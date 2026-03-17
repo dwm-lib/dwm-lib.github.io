@@ -1,0 +1,27 @@
+﻿@page "/skill/category/{categoryName}"
+@inject IDataService DataService
+
+<PageTitle>DWM Library - Skill Category - @categoryName</PageTitle>
+
+@if (dataLoaded)
+{
+    <div class="container">
+        <div class="row mb-3">
+            <h1 class="col-12">Category @(categoryName) Skills</h1>
+            <SkillCardGridComponent skills=@(skills!.OrderBy(skill => skill.Id).ToArray()) />
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <section>
+                    <h2>Requirements</h2>
+                    <SkillRequirementsComponent skills=@(skills) includeNames=true />
+                </section>
+            </div>
+        </div>
+    </div>
+}
+
+@if (notFound)
+{
+    <NotFoundComponent />
+}

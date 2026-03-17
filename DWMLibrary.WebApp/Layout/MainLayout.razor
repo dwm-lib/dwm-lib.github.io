@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+<main>
+    <nav class="fixed-top">
+        <CascadingValue Value="@collapseNavMenu">
+            <NavigationBar OnClickCallback=@HandleChildClicks />
+            <BreadcrumbBar Links="@breadcrumbLinks" OnClickCallback=@HandleChildClicks />
+        </CascadingValue>
+    </nav>
+    <article class="content">
+        @if (!collapseNavMenu)
+        {
+            <div class="overlay" @onclick="HandleFadeClick" />
+        }
+        <ErrorBoundary @ref="errorBoundary">
+            <ChildContent>
+                @Body
+            </ChildContent>
+            <ErrorContent>
+                <NotFoundComponent />
+            </ErrorContent>
+        </ErrorBoundary>
+    </article>
+</main>
+

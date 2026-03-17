@@ -1,0 +1,50 @@
+﻿@page "/monster/{monsterName}"
+@inject IDataService DataService
+
+<PageTitle>DWM Library - Monster - @monsterName</PageTitle>
+
+@if (dataLoaded)
+{
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12">@monster!.Name</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <section>
+                    <MonsterInfoComponent monster=@(monster) />
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xl-4">
+                <section>
+                    <h2>Stats</h2>
+                </section>
+                <section>
+                    <h3>Growths</h3>
+                    <MonsterGrowthsComponent monsters=@([monster]) />
+                </section>
+                <section>
+                    <h3>Resistances</h3>
+                    <MonsterResistancesComponent monster=@(monster) halfSize=true />
+                </section>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <section>
+                    <MonsterBreedsComponent breeds=@(breeds!.Where(b => string.Equals(b.Target.Name, monster!.Name, StringComparison.InvariantCultureIgnoreCase)).ToArray()) includeTargets=false />
+                </section>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <section>
+                    <MonsterBreedsComponent breeds=@(breeds!.Where(b => !string.Equals(b.Target.Name, monster!.Name, StringComparison.InvariantCultureIgnoreCase)).ToArray()) includeTargets=true />
+                </section>
+            </div>
+        </div>
+    </div>
+}
+
+@if (notFound)
+{
+    <NotFoundComponent />
+}

@@ -1,0 +1,16 @@
+﻿@page "/Json"
+@inject IDataService DataService
+
+<PageTitle>DWM Library - Json</PageTitle>
+
+@if (dataLoaded && !notFound)
+{
+    <div class="container-fluid h-100">
+        <code>@(json)</code>
+    </div>
+}
+
+@if (notFound)
+{
+    <NotFoundComponent />
+}

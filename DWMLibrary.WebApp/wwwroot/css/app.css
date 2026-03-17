@@ -1,0 +1,226 @@
+body {
+    font-family: Lato, "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+}
+
+nav {
+    margin-bottom: 2rem;
+}
+
+article {
+    /*margin-left: 0.5rem;
+    margin-right: 0.5rem;*/
+    margin-bottom: 2rem;
+}
+
+a {
+    color: var(--bs-link-color);
+    text-decoration: none;
+}
+
+    a.active {
+        color: var(--bs-link-color);
+        text-decoration: none;
+    }
+
+        a.active:hover {
+            color: var(--bs-link-hover-color);
+            text-decoration: underline;
+        }
+
+    a:hover {
+        color: var(--bs-link-hover-color);
+        text-decoration: underline;
+    }
+
+    a.show {
+        color: var(--bs-link-color);
+        text-decoration: none;
+    }
+
+hr {
+    margin: 2rem auto 1rem auto;
+    border: none;
+    border-top: var(--bs-secondary-color) 4px solid;
+    width: 66.6%;
+}
+
+h1, .h1, h4, .h4 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+h2, .h2, h5, .h5 {
+    font-size: 1.66rem;
+    text-align: center;
+}
+
+h3, .h3, h6, .h6 {
+    font-size: 1.33rem;
+    text-align: start;
+}
+
+h1, h2, h3, .h1, .h2, .h3 {
+    color: var(--bs-orange);
+}
+
+h4, h5, h6, .h4, .h5, .h6 {
+    color: var(--bs-body-color);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 300;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+    .h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a {
+        color: inherit;
+    }
+
+        h1 a svg, h2 a svg, h3 a svg, h4 a svg, h5 a svg, h6 a svg,
+        .h1 a svg, .h2 a svg, .h3 a svg, .h4 a svg, .h5 a svg, .h6 a svg {
+            color: var(--bs-link-color);
+            font-size: 1em;
+        }
+
+        h1 a.active, h2 a.active, h3 a.active, h4 a.active, h5 a.active, h6 a.active,
+        .h1 a.active, .h2 a.active, .h3 a.active, .h4 a.active, .h5 a.active, .h6 a.active {
+            color: inherit;
+        }
+
+            h1 a.active svg, h2 a.active svg, h3 a.active svg, h4 a.active svg, h5 a.active svg, h6 a.active svg,
+            .h1 a.active svg, .h2 a.active svg, .h3 a.active svg, .h4 a.active svg, .h5 a.active svg, .h6 a.active svg {
+                color: var(--bs-link-color);
+                font-size: 1em;
+            }
+
+            h1 a.active:hover, h2 a.active:hover, h3 a.active:hover, h4 a.active:hover, h5 a.active:hover, h6 a.active:hover,
+            .h1 a.active:hover, .h2 a.active:hover, .h3 a.active:hover, .h4 a.active:hover, .h5 a.active:hover, .h6 a.active:hover {
+                color: inherit;
+            }
+
+                h1 a.active:hover svg, h2 a.active:hover svg, h3 a.active:hover svg, h4 a.active:hover svg, h5 a.active:hover svg, h6 a.active:hover svg,
+                .h1 a.active:hover svg, .h2 a.active:hover svg, .h3 a.active:hover svg, .h4 a.active:hover svg, .h5 a.active:hover svg, .h6 a.active:hover svg {
+                    color: var(--bs-link-hover-color);
+                    font-size: 1em;
+                }
+
+        h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover,
+        .h1 a:hover, .h2 a:hover, .h3 a:hover, .h4 a:hover, .h5 a:hover, .h6 a:hover {
+            color: inherit;
+        }
+
+            h1 a:hover svg, h2 a:hover svg, h3 a:hover svg, h4 a:hover svg, h5 a:hover svg, h6 a:hover svg,
+            .h1 a:hover svg, .h2 a:hover svg, .h3 a:hover svg, .h4 a:hover svg, .h5 a:hover svg, .h6 a:hover svg {
+                color: var(--bs-link-hover-color);
+                font-size: 1em;
+            }
+
+#Intro {
+    text-align: center;
+}
+
+ul {
+    list-style-type: square;
+}
+
+    ul.Possibilities, ul.BigList {
+        list-style: none;
+        padding-left: 0px;
+        margin: 0px;
+    }
+
+        ul.BigList > li {
+            display: inline-block;
+            text-align: center;
+        }
+
+table th {
+    font-weight: lighter;
+    font-style: italic;
+    color: var(--bs-secondary-color);
+}
+
+table td, table th {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+table.Breed th {
+    padding-bottom: 10px;
+}
+
+table.Breed > thead {
+    border-bottom: 4px solid var(--bs-border-color);
+}
+
+table.Breed tr {
+    border-bottom: 2px solid var(--bs-border-color);
+}
+
+table.Breed td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table.Growth, table.Breed {
+    width: 100%;
+}
+
+/* ========== Non-bootstrap setup ================================> */
+
+.MonsterInfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.SkillInfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.SkillDetailRow, .Combination {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.SkillMonsterList {
+    display: block;
+    list-style: none;
+    padding-left: 0px;
+    margin: 0px;
+    font-size: 60%;
+    font-weight: bold;
+}
+
+.SkillWithMonsters, .Operator {
+    text-align: center;
+}
+
+.Operator {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.RelevantSkill {
+    border: var(--bs-border-color) 2px solid;
+    padding: 2px;
+}
+
+.SkillDetailRow {
+    justify-content: start;
+}
+
+.Combination {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    justify-content: start;
+}

@@ -1,0 +1,46 @@
+﻿@page "/monster/location/{locationName}"
+@inject IDataService DataService
+
+<PageTitle>DWM Library - Location - @(Uri.UnescapeDataString(locationName))</PageTitle>
+
+@if (dataLoaded)
+{
+    <div class="container">
+        <div class="row mb-3">
+            <section>
+                <h1 class="col-12">@(Uri.UnescapeDataString(locationName))</h1>
+                <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Both)) />
+            </section>
+        </div>
+        <div class="row mb-3">
+            <section>
+                <h2 class="col-12">@(MonsterLocationVersion.Cobi.ToJsonString()) Exclusive</h2>
+                <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Cobi)) />
+            </section>
+        </div>
+        <div class="row mb-3">
+            <section>
+                <h2 class="col-12">@(MonsterLocationVersion.Tara.ToJsonString()) Exclusive</h2>
+                <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Tara)) />
+            </section>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <section>
+                    <h2>Growths</h2>
+                    <MonsterGrowthsComponent monsters=@(monsters) includeNames=true />
+                </section>
+            </div>
+            <div class="col-lg-6">
+                <section>
+                    <MonsterBreedsComponent breeds=@(breeds) includeTargets=true />
+                </section>
+            </div>
+        </div>
+    </div>
+}
+
+@if (notFound)
+{
+    <NotFoundComponent />
+}

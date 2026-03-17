@@ -1,0 +1,90 @@
+﻿@page "/monster"
+@page "/monster/family"
+@page "/monster/location"
+@page "/monster/size"
+@page "/monster/rarity"
+@implements IDisposable
+@inject IDataService DataService
+@inject NavigationManager NavigationManager
+
+<PageTitle>DWM Library - Monsters</PageTitle>
+
+@if (dataLoaded)
+{
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12">Monsters</h1>
+        </div>
+        <div class="row">
+            <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item px-1" role="presentation">
+                    <NavLink class="nav-link" href="monster" Match="NavLinkMatch.All">
+                        All Monsters
+                    </NavLink>
+                </li>
+                <li class="nav-item px-1" role="presentation">
+                    <NavLink class="nav-link" href="/monster/family">
+                        By Family
+                    </NavLink>
+                </li>
+                <li class="nav-item px-1" role="presentation">
+                    <NavLink class="nav-link" href="/monster/location">
+                        By Location
+                    </NavLink>
+                </li>
+                <li class="nav-item px-1" role="presentation">
+                    <NavLink class="nav-link" href="/monster/size">
+                        By Size
+                    </NavLink>
+                </li>
+                <li class="nav-item px-1" role="presentation">
+                    <NavLink class="nav-link" href="/monster/rarity">
+                        By Rarity
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
+        <hr class="mb-5"/>
+        <div class="row tab-content">
+            <div class="col-12 tab-pane fade @(IsShowActive(Tabs.ALL))" role="tabpanel">
+                <MonsterCardGridComponent monsters=@(monsters!.OrderBy(monster => monster.Name).ToArray()) />
+            </div>
+            <div class="col-12 tab-pane fade @(IsShowActive(Tabs.FAMILY))" role="tabpanel">
+                @foreach (var family in Enum.GetValues<MonsterFamily>())
+                {
+                    <div class="row mb-5">
+                        <HeaderLinkComponent href=@($"/monster/family/{Uri.EscapeDataString(family.ToJsonString())}") text=@($"The {family.ToJsonString()} Family") />
+                        <MonsterCardGridComponent monsters=@(monsters!.Where(monster => monster.Family == family).OrderBy(monster => monster.Id).ToArray()) />
+                    </div>
+                }
+            </div>
+            <div class="col-12 tab-pane fade @(IsShowActive(Tabs.LOCATION))" role="tabpanel">
+                @foreach (var location in Enum.GetValues<MonsterLocationType>())
+                {
+                    <div class="row mb-5">
+                        <HeaderLinkComponent href=@($"/monster/location/{Uri.EscapeDataString(location.ToJsonString())}") text=@(location.ToJsonString()) />
+                        <MonsterCardGridComponent monsters=@(monsters!.Where(monster => monster.Locations is not null && monster.Locations.Any(loc => loc.Name == location)).OrderBy(monster => monster.Id).ToArray()) />
+                    </div>
+                }
+            </div>
+            <div class="col-12 tab-pane fade @(IsShowActive(Tabs.SIZE))" role="tabpanel">
+                @foreach (var size in Enum.GetValues<MonsterSize>())
+                {
+                    <div class="row mb-5">
+                        <HeaderLinkComponent href=@($"/monster/size/{Uri.EscapeDataString(size.ToJsonString())}") text=@($"Size {size.ToJsonString()}") />
+                        <MonsterCardGridComponent monsters=@(monsters!.Where(monster => monster.Size == size).OrderBy(monster => monster.Id).ToArray()) />
+                    </div>
+                }
+            </div>
+            <div class="col-12 tab-pane fade @(IsShowActive(Tabs.RARITY))" role="tabpanel">
+                @foreach (var rarity in Enum.GetValues<MonsterRarity>())
+                {
+                    <div class="row mb-5">
+                        <HeaderLinkComponent href=@($"/monster/rarity/{Uri.EscapeDataString(rarity.ToJsonString())}") text=@(rarity.ToJsonString()) />
+                        <MonsterCardGridComponent monsters=@(monsters!.Where(monster => monster.Rarity == rarity).OrderBy(monster => monster.Id).ToArray()) />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

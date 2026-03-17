@@ -1,0 +1,56 @@
+﻿@page "/skill/{skillName}"
+@inject IDataService DataService
+
+<PageTitle>DWM Library - Skill - @skillName</PageTitle>
+
+@if (dataLoaded)
+{
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12">@skill!.Name</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <section>
+                    <SkillInfoComponent upgradeGroup=@(upgradeGroup) skill=@(skill) />
+                </section>
+            </div>
+        </div>
+        @if (GetMonsters() is not null)
+        {
+            <div class="row">
+                <section>
+                    <h2>Monsters</h2>
+                    <MonsterCardGridComponent monsters=@(GetMonsters()) halfSize=false />
+                </section>
+            </div>
+        }
+        @if (combinesFrom || combinesTo)
+        {
+            <div class="d-flex flex-row flex-wrap justify-content-center">
+                @if (combinesFrom)
+                {
+                    <section class="mx-auto p-2">
+                        <h2>Combines From</h2>
+                        <SkillCombinationComponent skill=@(skill) currentSkill=@(skill) />
+                    </section>
+                }
+                @if (combinesTo)
+                {
+                    <section class="mx-auto p-2">
+                        <h2>Combines To</h2>
+                        @foreach (var sk in upgradeGroup!.Where(combo => combo.CombinesTo is not null && combo.CombinesTo.Length > 0).SelectMany(combo => combo.CombinesTo!).DistinctBy(skill => skill.Id))
+                        {
+                            <SkillCombinationComponent skill=@(sk) currentSkill=@(skill) />
+                        }
+                    </section>
+                }
+            </div>
+        }
+    </div>
+}
+
+@if (notFound)
+{
+    <NotFoundComponent />
+}

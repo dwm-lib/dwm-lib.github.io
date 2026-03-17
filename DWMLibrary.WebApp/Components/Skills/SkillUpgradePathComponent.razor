@@ -1,0 +1,10 @@
+﻿<div class="SkillDetailRow">
+    @foreach (var s in upgradeGroup!.Index())
+    {
+        <SkillWithMonstersComponent skill=@(s.Item.Skill) isCurrent=@(s.Item.Skill.Id == currentSkill.Id) showMonsters=false />
+        @if (s.Index < upgradeGroup!.Length - 1)
+        {
+            <div class="Operator">⟶</div>
+        }
+    }
+</div>

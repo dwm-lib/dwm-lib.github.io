@@ -1,0 +1,12 @@
+﻿<div class="row BigList align-content-center g-3">
+    @foreach (var value in categories)
+    {
+        <div class=@(css)>
+            <div class="card bg-body-tertiary text-center p-2">
+                <a href=@($"{href}/{Uri.EscapeDataString(value)}") class="stretched-link">
+                    @(value)
+                </a>
+            </div>
+        </div>
+    }
+</div>

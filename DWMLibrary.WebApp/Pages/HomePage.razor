@@ -1,0 +1,83 @@
+﻿@page "/"
+@inject IDataService DataService
+
+<PageTitle>DWM Library - Home</PageTitle>
+
+@if (dataLoaded)
+{
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12">DWM Library</h1>
+            <div id="Intro" class="col-12">
+                <p>
+                    Welcome to the breed database for Dragon Warrior: Monsters 2.
+                    <br />
+                    Click any link to start.
+                </p>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <HeaderLinkComponent href=@($"/monster") text=@($"Monsters") h1=true />
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/monster/family") text=@($"Families") />
+                    <CardGridComponent href=@($"/monster/family") categories=@(typeof(MonsterFamily).GetJsonStrings()) halfSize=true />
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/monster/location") text=@($"Locations") />
+                    <CardGridComponent href=@($"/monster/location") categories=@(typeof(MonsterLocationType).GetJsonStrings()) halfSize=true />
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/monster/size") text=@($"Sizes") />
+                    <CardGridComponent href=@($"/monster/size") categories=@(typeof(MonsterSize).GetJsonStrings()) halfSize=true />
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/monster/rarity") text=@($"Rarities") />
+                    <CardGridComponent href=@($"/monster/rarity") categories=@(typeof(MonsterRarity).GetJsonStrings()) halfSize=true />
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <HeaderLinkComponent href=@($"/skill") text=@($"Skills") h1=true />
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/skill/type") text=@($"Types") />
+                    <CardGridComponent href=@($"/skill/type") categories=@(typeof(SkillType).GetJsonStrings()) halfSize=true />
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/skill/category") text=@($"Categories") />
+                    <CardGridComponent href=@($"/skill/category") categories=@(typeof(SkillCategory).GetJsonStrings()) halfSize=true />
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="row">
+                    <HeaderLinkComponent href=@($"/skill/attribute") text=@($"Attributes") />
+                    <CardGridComponent href=@($"/skill/attribute") categories=@(typeof(SkillAttribute).GetJsonStrings()) halfSize=false />
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-12 text-center">
+                <span style="font-size: .9rem; font-weight: lighter; font-style: italic; color: var(--bs-tertiary-color);">
+                    Monsters: @(monsters!.Length) &nbsp;&nbsp;|&nbsp;&nbsp; Breeds: @(breeds!.Length) &nbsp;&nbsp;|&nbsp;&nbsp; Skills: @(skills!.Length)
+                </span>
+            </div>
+        </div>
+    </div>
+}
+
+@if (notFound)
+{
+    <NotFoundComponent />
+}

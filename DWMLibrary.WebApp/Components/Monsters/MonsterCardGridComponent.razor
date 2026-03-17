@@ -1,0 +1,18 @@
+﻿@if (dataLoaded)
+{
+    <div id="MonsterList" class="row BigList g-3">
+        @foreach (var monster in monsters!)
+        {
+            <div class=@(css)>
+                <div class="card bg-body-tertiary text-center p-2">
+                    <div id="MonsterPic" style=@($"height: 48px; background-image: url(/pics/1x/{monster!.Name.ToLower()}.png); background-repeat: no-repeat; background-position: center;") />
+                    <a href=@($"/monster/{Uri.EscapeDataString(monster.Name)}") class="stretched-link mt-2">
+                        @(monster.Name)
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
