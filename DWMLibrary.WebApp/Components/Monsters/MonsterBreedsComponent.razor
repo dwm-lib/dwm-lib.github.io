@@ -27,7 +27,7 @@ else
                         @foreach (var b in breed.Bases.Where(b => b.Type == BreedRequirementType.Family).OrderBy(b => b.Name))
                         {
                             <li>
-                                <a href=@($"/monster/family/{Uri.EscapeDataString(b.Name!.ToJsonString())}")>
+                                <a href=@($"/monster/family/{Uri.EscapeDataString(b.Name!.ToString() ?? string.Empty)}")>
                                     @(b.Name!.ToJsonString())
                                 </a>
                             </li>
@@ -47,7 +47,7 @@ else
                         @foreach (var m in breed.Mates.Where(m => m.Type == BreedRequirementType.Family).OrderBy(m => m.Name))
                         {
                             <li>
-                                <a href=@($"/monster/family/{Uri.EscapeDataString(m.Name!.ToJsonString())}")>
+                                <a href=@($"/monster/family/{Uri.EscapeDataString(m.Name!.ToString() ?? string.Empty)}")>
                                     @(m.Name!.ToJsonString())
                                 </a>
                             </li>

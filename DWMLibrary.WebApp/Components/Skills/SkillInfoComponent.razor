@@ -6,7 +6,7 @@
                 <div class="row align-items-center mb-3">
                     <h3 class="col-5 mb-0">Type</h3>
                     <span class="col-7">
-                        <a href=@($"/skill/type/{Uri.EscapeDataString(skill!.Type.ToJsonString())}")>
+                        <a href=@($"/skill/type/{Uri.EscapeDataString(skill!.Type.ToString())}")>
                             @(skill.Type.ToJsonString())
                         </a>
                     </span>
@@ -16,13 +16,13 @@
                     <span class="col-7">
                         @if (skill.Category is not null)
                         {
-                            <a href=@($"/skill/category/{Uri.EscapeDataString(skill?.Category?.ToJsonString() ?? string.Empty)}")>
+                            <a href=@($"/skill/category/{Uri.EscapeDataString(skill?.Category?.ToString() ?? string.Empty)}")>
                                 @(skill!.Category.ToJsonString())
                             </a>
                         }
                         else
                         {
-                            <a href=@($"/skill/category/{Uri.EscapeDataString(SkillCategory.NONE.ToJsonString())}")>
+                            <a href=@($"/skill/category/{Uri.EscapeDataString(SkillCategory.NONE.ToString())}")>
                                 @(SkillCategory.NONE.ToJsonString())
                             </a>
                         }
@@ -33,13 +33,13 @@
                     <span class="col-7">
                         @if (skill.Attribute is not null)
                         {
-                            <a href=@($"/skill/attribute/{Uri.EscapeDataString(skill?.Attribute?.ToJsonString() ?? string.Empty)}")>
+                            <a href=@($"/skill/attribute/{Uri.EscapeDataString(skill?.Attribute?.ToString() ?? string.Empty)}")>
                                 @(skill!.Attribute.ToJsonString())
                             </a>
                         }
                         else
                         {
-                            <a href=@($"/skill/attribute/{Uri.EscapeDataString(SkillAttribute.NONE.ToJsonString())}")>
+                            <a href=@($"/skill/attribute/{Uri.EscapeDataString(SkillAttribute.NONE.ToString())}")>
                                 @(SkillAttribute.NONE.ToJsonString())
                             </a>
                         }

@@ -11,7 +11,7 @@
                 <div class="row align-items-center mb-3">
                     <h3 class="col-4 mb-0">Family</h3>
                     <span class="col-8">
-                        <a href=@($"/monster/family/{Uri.EscapeDataString(monster!.Family.ToJsonString())}")>
+                        <a href=@($"/monster/family/{Uri.EscapeDataString(monster!.Family.ToString())}")>
                             @(monster!.Family.ToJsonString())
                         </a>
                     </span>
@@ -21,7 +21,7 @@
                     <span class="col-8">
                         @if (monster!.Size is not null)
                         {
-                            <a href=@($"/monster/size/{Uri.EscapeDataString(monster!.Size.ToJsonString())}")>
+                            <a href=@($"/monster/size/{Uri.EscapeDataString(monster!.Size.ToString() ?? string.Empty)}")>
                                 @(monster.Size.ToJsonString())
                             </a>
                         }
@@ -76,7 +76,7 @@
                         @foreach (var loc in monster.Locations)
                         {
                             <li>
-                                <a href=@($"/monster/location/{Uri.EscapeDataString(loc.Name.ToJsonString())}")>
+                                <a href=@($"/monster/location/{Uri.EscapeDataString(loc.Name.ToString())}")>
                                     @(loc.Name.ToJsonString())
                                     @if (loc.Version != MonsterLocationVersion.Both)
                                     {
