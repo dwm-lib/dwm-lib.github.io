@@ -1,0 +1,12 @@
+﻿.statistics-bar {
+    min-height: 2rem;
+    color: var(--bs-tertiary-color);
+    background-color: var(--bs-tertiary-bg);
+}
+
+.statistics-item {
+    font-size: 0.9rem;
+    font-weight: lighter;
+    font-style: italic;
+    color: var(--bs-tertiary-color);
+}

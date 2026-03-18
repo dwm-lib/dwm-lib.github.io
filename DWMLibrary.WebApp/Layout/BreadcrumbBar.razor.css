@@ -1,7 +1,7 @@
 ﻿.breadcrumb-bar {
     min-height: 2rem;
-    color: var(--bs-emphasis-color);
-    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-secondary-color);
+    background-color: var(--bs-secondary-bg);
 }
 
 .breadcrumb-item {
