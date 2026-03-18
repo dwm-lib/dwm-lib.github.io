@@ -5,7 +5,7 @@ namespace DWMLibrary.WebApp.Pages.Skills
     public partial class SkillCategoryPage
     {
         [Parameter]
-        public required string categoryName { get; set; }
+        public required string CategoryName { get; set; }
 
         private bool dataLoaded => (skills is not null);
         private bool notFound = false;
@@ -14,9 +14,14 @@ namespace DWMLibrary.WebApp.Pages.Skills
 
         protected override async Task OnParametersSetAsync()
         {
-            var _categoryName = Uri.UnescapeDataString(categoryName);
+            CategoryName = Uri.UnescapeDataString(CategoryName);
 
-            skills = await DataService.GetSkillsByCategoryAsync(_categoryName);
+            if (Enum.IsDefined(typeof(SkillCategory), CategoryName) || Enum.IsDefined(typeof(SkillCategory), int.Parse(CategoryName)))
+            {
+                var _category = Enum.Parse<SkillCategory>(CategoryName);
+                CategoryName = _category.ToJsonString();
+                skills = await DataService.GetSkillsByCategoryAsync(_category);
+            }
 
             notFound = (skills is null);
         }

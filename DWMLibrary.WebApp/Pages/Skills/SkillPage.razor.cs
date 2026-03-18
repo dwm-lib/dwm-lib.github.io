@@ -15,10 +15,10 @@ namespace DWMLibrary.WebApp.Pages.Skills
 
         protected override async Task OnParametersSetAsync()
         {
-            var _skillName = Uri.UnescapeDataString(skillName);
+            skillName = Uri.UnescapeDataString(skillName);
 
-            skill = await DataService.GetSkillByNameAsync(_skillName);
-            upgradeGroup = (await DataService.GetSkillsByUpgradeGroupAsync(_skillName)) ?? [];
+            skill = await DataService.GetSkillByNameAsync(skillName);
+            upgradeGroup = (await DataService.GetSkillsByUpgradeGroupAsync(skillName)) ?? [];
 
             notFound = (skill is null);
         }

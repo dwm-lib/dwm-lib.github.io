@@ -5,7 +5,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
     public partial class MonsterRarityPage
     {
         [Parameter]
-        public required string rarityName { get; set; }
+        public required string RarityName { get; set; }
 
         private bool dataLoaded => (monsters is not null && breeds is not null);
         private bool notFound = false;
@@ -15,10 +15,14 @@ namespace DWMLibrary.WebApp.Pages.Monsters
 
         protected override async Task OnParametersSetAsync()
         {
-            var _rarityName = Uri.UnescapeDataString(rarityName);
-
-            monsters = await DataService.GetMonstersByRarityAsync(_rarityName);
-            breeds = (await DataService.GetBreedsByRarityAsync(_rarityName)) ?? [];
+            RarityName = Uri.UnescapeDataString(RarityName);
+            if (Enum.IsDefined(typeof(MonsterRarity), RarityName) || Enum.IsDefined(typeof(MonsterRarity), int.Parse(RarityName)))
+            {
+                var _rarity = Enum.Parse<MonsterRarity>(RarityName);
+                RarityName = ((double)((int)_rarity / 2)).ToString("0.0");
+                monsters = await DataService.GetMonstersByRarityAsync(_rarity);
+                breeds = (await DataService.GetBreedsByRarityAsync(_rarity)) ?? [];
+            }
 
             notFound = (monsters is null);
         }

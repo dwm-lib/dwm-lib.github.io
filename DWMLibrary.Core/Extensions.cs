@@ -11,13 +11,7 @@ public static class Extensions
 
         if (fieldInfo is not null)
         {
-            // Check for the JsonStringEnumMemberName attribute
-            var attribute = fieldInfo.GetCustomAttribute<JsonStringEnumMemberNameAttribute>(false);
-
-            if (attribute != null && !string.IsNullOrEmpty(attribute.Name))
-            {
-                return attribute.Name; // Return the custom name
-            }
+            return fieldInfo.GetJsonAttribute();
         }
 
         // Fall back to the default enum name if the attribute is not present or empty
@@ -27,24 +21,55 @@ public static class Extensions
     public static string[] GetJsonStrings(this Type type)
     {
         FieldInfo[] fieldInfo = type.GetFields();
-        string[] values = [];
 
+        string[] values = [];
         foreach (var field in fieldInfo.Where(field => !field.IsSpecialName))
         {
-            // Check for the JsonStringEnumMemberName attribute
-            var attribute = field.GetCustomAttribute<JsonStringEnumMemberNameAttribute>(false);
+            values = [.. values, field.GetJsonAttribute()];
+        }
 
-            if (attribute != null && !string.IsNullOrEmpty(attribute.Name))
+        return values;
+    }
+
+    public static Tuple<string, string>[] GetJsonTuples(this Type type)
+    {
+        FieldInfo[] fieldInfo = type.GetFields();
+
+        Tuple<string, string>[] values = [];
+        foreach (var field in fieldInfo.Where(field => !field.IsSpecialName))
+        {
+            if (type.IsEnum && type.Name == nameof(MonsterRarity) && type.IsEnumDefined(field.Name))
             {
-                values = [.. values, attribute.Name]; // Add the custom name
+                int enumValue = (int)Enum.Parse(type, field.Name);
+                values = [.. values, new Tuple<string, string>(enumValue.ToString(), field.GetJsonAttribute())];
             }
             else
             {
-                // Fall back to the default enum name if the attribute is not present or empty
-                values = [.. values, field.Name];
+                values = [.. values, new Tuple<string, string>(field.Name, field.GetJsonAttribute())];
             }
         }
 
         return values;
+    }
+
+    private static string GetJsonAttribute(this FieldInfo fieldInfo)
+    {
+        // Check for the JsonStringEnumMemberName attribute
+        var attribute = fieldInfo.GetCustomAttribute<JsonStringEnumMemberNameAttribute>(false);
+
+        if (attribute != null && !string.IsNullOrEmpty(attribute.Name))
+        {
+            return attribute.Name.TransformStars(); // Add the custom name
+        }
+        else
+        {
+            // Fall back to the default enum name if the attribute is not present or empty
+            return fieldInfo.Name;
+        }
+    }
+
+    private static string TransformStars(this string jsonString)
+    {
+        return jsonString.Replace("★", "\uF586 ").Replace("⯪", "\uF587 ").Replace("☆", "\uF588 ").Trim();
     }
 }

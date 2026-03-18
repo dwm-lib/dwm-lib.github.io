@@ -5,7 +5,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
     public partial class MonsterLocationPage
     {
         [Parameter]
-        public required string locationName { get; set; }
+        public required string LocationName { get; set; }
 
         private bool dataLoaded => (monsters is not null && breeds is not null);
         private bool notFound = false;
@@ -15,10 +15,15 @@ namespace DWMLibrary.WebApp.Pages.Monsters
 
         protected override async Task OnParametersSetAsync()
         {
-            var _locationName = Uri.UnescapeDataString(locationName);
+            LocationName = Uri.UnescapeDataString(LocationName);
 
-            monsters = await DataService.GetMonstersByLocationAsync(_locationName);
-            breeds = (await DataService.GetBreedsByLocationAsync(_locationName)) ?? [];
+            if (Enum.IsDefined(typeof(MonsterLocationType), LocationName) || Enum.IsDefined(typeof(MonsterLocationType), int.Parse(LocationName)))
+            {
+                var _location = Enum.Parse<MonsterLocationType>(LocationName);
+                LocationName = _location.ToJsonString();
+                monsters = await DataService.GetMonstersByLocationAsync(_location);
+                breeds = (await DataService.GetBreedsByLocationAsync(_location)) ?? [];
+            }
 
             notFound = (monsters is null);
         }
@@ -29,7 +34,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
             {
                 return monster.Locations.Any(location =>
                     {
-                        return location.Version == version && string.Equals(location.Name.ToJsonString(), Uri.UnescapeDataString(locationName), StringComparison.InvariantCultureIgnoreCase);
+                        return location.Version == version && string.Equals(location.Name.ToJsonString(), LocationName, StringComparison.InvariantCultureIgnoreCase);
                     });
             }).OrderBy(monster => monster.Id).ToArray();
         }

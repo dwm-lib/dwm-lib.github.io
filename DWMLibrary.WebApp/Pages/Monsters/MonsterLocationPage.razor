@@ -1,14 +1,16 @@
-﻿@page "/monster/location/{locationName}"
+﻿@page "/monster/location/{LocationName}"
 @inject IDataService DataService
 
-<PageTitle>DWM Library - Location - @(Uri.UnescapeDataString(locationName))</PageTitle>
+<PageTitle>DWM Library - Location - @(LocationName)</PageTitle>
 
 @if (dataLoaded)
 {
     <div class="container">
+        <div class="row">
+            <h1 class="col-12">@(LocationName)</h1>
+        </div>
         <div class="row mb-3">
             <section>
-                <h1 class="col-12">@(Uri.UnescapeDataString(locationName))</h1>
                 <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Both)) />
             </section>
         </div>
@@ -24,7 +26,7 @@
                 <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Tara)) />
             </section>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-lg-6">
                 <section>
                     <h2>Growths</h2>

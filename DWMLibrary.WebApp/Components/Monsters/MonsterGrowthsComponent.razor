@@ -1,38 +1,31 @@
 ﻿@if (dataLoaded)
 {
-    <table class="Growth">
-        <thead>
-            <tr>
-                @if (includeNames)
-                {
-                    <th>Name</th>
-                }
-                <th>MaxLvl</th>
-                <th>Exp</th>
-                <th>Hp</th>
-                <th>Mp</th>
-                <th>Atk</th>
-                <th>Def</th>
-                <th>Agl</th>
-                <th>Int</th>
-            </tr>
-        </thead>
-        @foreach (var monster in monsters!)
+    <div class="row">
+        @if (includeNames)
         {
-            <tr>
-                @if (includeNames)
+            <div class="col-auto mx-auto px-0">
+                <span class="Growths">Name</span>
+                @foreach (var monster in monsters!)
                 {
-                    <td><a href=@($"/monster/{Uri.EscapeDataString(monster.Name)}")>@monster.Name</a></td>
+                    <br />
+                    <a href=@($"/monster/{Uri.EscapeDataString(monster.Name)}")>
+                        @(monster.Name)
+                    </a>
                 }
-                <td>@monster.Growths.LVL</td>
-                <td>@monster.Growths.EXP</td>
-                <td>@monster.Growths.HP</td>
-                <td>@monster.Growths.MP</td>
-                <td>@monster.Growths.ATK</td>
-                <td>@monster.Growths.DEF</td>
-                <td>@monster.Growths.AGL</td>
-                <td>@monster.Growths.INT</td>
-            </tr>
+            </div>
         }
-    </table>
+        @foreach (var field in typeof(MonsterGrowths).GetProperties())
+        {
+            <div class="col-1 mx-auto px-0">
+                <span class="Growths">@(field.Name)</span>
+                @foreach (var monster in monsters!)
+                {
+                    <br />
+                    <span>
+                        @(field.GetValue(monster.Growths))
+                    </span>
+                }
+            </div>
+        }
+    </div>
 }

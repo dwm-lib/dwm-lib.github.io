@@ -1,16 +1,20 @@
-﻿@page "/monster/size/{sizeName}"
+﻿@page "/monster/size/{SizeName}"
 @inject IDataService DataService
 
-<PageTitle>DWM Library - Rarity - @(Uri.UnescapeDataString(sizeName))</PageTitle>
+<PageTitle>DWM Library - Rarity - @(SizeName)</PageTitle>
 
 @if (dataLoaded)
 {
     <div class="container">
         <div class="row">
-            <h1 class="col-12">Size @(Uri.UnescapeDataString(sizeName)) Monsters</h1>
-            <MonsterCardGridComponent monsters=@(monsters!.OrderBy(skill => skill.Id).ToArray()) />
+            <h1 class="col-12">Size @(SizeName) Monsters</h1>
         </div>
-        <div class="row">
+        <div class="row mb-3">
+            <section>
+                <MonsterCardGridComponent monsters=@(monsters!.OrderBy(skill => skill.Id).ToArray()) />
+            </section>
+        </div>
+        <div class="row mb-3">
             <div class="col-lg-6">
                 <section>
                     <h2>Growths</h2>

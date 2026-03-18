@@ -79,7 +79,7 @@ public enum MonsterSize
 public enum MonsterRarity
 {
     [JsonStringEnumMemberName("☆☆☆☆")]
-    RARITY_0_0,
+    NONE,
     [JsonStringEnumMemberName("⯪☆☆☆")]
     RARITY_0_5,
     [JsonStringEnumMemberName("★☆☆☆")]

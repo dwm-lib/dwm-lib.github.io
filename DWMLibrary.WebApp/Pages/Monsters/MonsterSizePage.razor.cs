@@ -5,7 +5,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
     public partial class MonsterSizePage
     {
         [Parameter]
-        public required string sizeName { get; set; }
+        public required string SizeName { get; set; }
 
         private bool dataLoaded => (monsters is not null && breeds is not null);
         private bool notFound = false;
@@ -15,10 +15,15 @@ namespace DWMLibrary.WebApp.Pages.Monsters
 
         protected override async Task OnParametersSetAsync()
         {
-            var _sizeName = Uri.UnescapeDataString(sizeName);
+            SizeName = Uri.UnescapeDataString(SizeName);
 
-            monsters = await DataService.GetMonstersBySizeAsync(_sizeName);
-            breeds = (await DataService.GetBreedsBySizeAsync(_sizeName)) ?? [];
+            if (Enum.IsDefined(typeof(MonsterSize), SizeName) || Enum.IsDefined(typeof(MonsterSize), int.Parse(SizeName)))
+            {
+                var _size = Enum.Parse<MonsterSize>(SizeName);
+                SizeName = _size.ToJsonString();
+                monsters = await DataService.GetMonstersBySizeAsync(_size);
+                breeds = (await DataService.GetBreedsBySizeAsync(_size)) ?? [];
+            }
 
             notFound = (monsters is null);
         }

@@ -13,5 +13,5 @@ public partial class HeaderLinkComponent
     [Parameter]
     public required bool h1 { get; set; } = false;
 
-    private string css => "col-12" + " " + (h1 ? "h1" : "h2");
+    private string css => "col-12 justify-content-center align-content-center align-items-center" + " " + (h1 ? "h1" : "h2");
 }

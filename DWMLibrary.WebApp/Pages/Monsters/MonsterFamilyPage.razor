@@ -1,20 +1,20 @@
-﻿@page "/monster/family/{familyName}"
+﻿@page "/monster/family/{FamilyName}"
 @inject IDataService DataService
 
-<PageTitle>DWM Library - Family - @(Uri.UnescapeDataString(familyName))</PageTitle>
+<PageTitle>DWM Library - Family - @(FamilyName)</PageTitle>
 
 @if (dataLoaded)
 {
     <div class="container">
         <div class="row">
-            <h1 class="col-12">The @(Uri.UnescapeDataString(familyName)) Family</h1>
+            <h1 class="col-12">The @(FamilyName) Family</h1>
         </div>
         <div class="row mb-3">
             <section>
                 <MonsterCardGridComponent monsters=@(monsters!.OrderBy(monster => monster.Id).ToArray()) />
             </section>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-lg-6">
                 <section>
                     <h2>Growths</h2>

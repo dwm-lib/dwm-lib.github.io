@@ -15,10 +15,10 @@ namespace DWMLibrary.WebApp.Pages.Monsters
 
         protected override async Task OnParametersSetAsync()
         {
-            var _monsterName = Uri.UnescapeDataString(monsterName);
+            monsterName = Uri.UnescapeDataString(monsterName);
 
-            monster = await DataService.GetMonsterByNameAsync(_monsterName);
-            breeds = (await DataService.GetBreedsByMonsterAsync(_monsterName)) ?? [];
+            monster = await DataService.GetMonsterByNameAsync(monsterName);
+            breeds = (await DataService.GetBreedsByMonsterAsync(monsterName)) ?? [];
 
             notFound = (monster is null);
         }

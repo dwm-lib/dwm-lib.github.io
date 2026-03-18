@@ -36,7 +36,7 @@
                     <span class="col-8">
                         @if (monster!.Rarity is not null)
                         {
-                            <a href=@($"/monster/rarity/{Uri.EscapeDataString(monster!.Rarity.ToJsonString())}") style="font-size: 1.5rem">
+                            <a href=@($"/monster/rarity/{monster!.Rarity}")>
                                 @(monster.Rarity.ToJsonString())
                             </a>
                         }
