@@ -5,8 +5,8 @@
         {
             <div class=@(css)>
                 <div class="card bg-body-tertiary text-center p-2">
-                    <div id="MonsterPic" style=@($"height: 48px; background-image: url(/pics/1x/{monster!.Name.ToLower()}.png); background-repeat: no-repeat; background-position: center;") />
-                    <a href=@($"/monster/{Uri.EscapeDataString(monster.Name)}") class="stretched-link mt-2">
+                    <MonsterImageComponent monster=@(monster) size="MonsterImageComponent.MonsterImageSize.Small" />
+                    <a class="stretched-link mt-2" href=@($"/monster/{Uri.EscapeDataString(monster.Name)}")>
                         @(monster.Name)
                     </a>
                 </div>
