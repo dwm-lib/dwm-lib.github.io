@@ -1,5 +1,6 @@
 ﻿@page "/skill/category/{CategoryName}"
 @inject IDataService DataService
+@inject NavigationManager NavigationManager
 
 <PageTitle>DWM Library - Skill Category - @(CategoryName)</PageTitle>
 
@@ -23,9 +24,4 @@
             </div>
         </div>
     </div>
-}
-
-@if (notFound)
-{
-    <NotFoundComponent />
 }

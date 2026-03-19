@@ -1,5 +1,6 @@
 ﻿@page "/monster/size/{SizeName}"
 @inject IDataService DataService
+@inject NavigationManager NavigationManager
 
 <PageTitle>DWM Library - Rarity - @(SizeName)</PageTitle>
 
@@ -28,9 +29,4 @@
             </div>
         </div>
     </div>
-}
-
-@if (notFound)
-{
-    <NotFoundComponent />
 }

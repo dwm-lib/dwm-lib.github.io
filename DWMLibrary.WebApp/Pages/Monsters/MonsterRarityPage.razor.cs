@@ -8,7 +8,6 @@ namespace DWMLibrary.WebApp.Pages.Monsters
         public required string RarityName { get; set; }
 
         private bool dataLoaded => (monsters is not null && breeds is not null);
-        private bool notFound = false;
 
         private Monster[]? monsters;
         private Breed[]? breeds;
@@ -24,7 +23,10 @@ namespace DWMLibrary.WebApp.Pages.Monsters
                 breeds = (await DataService.GetBreedsByRarityAsync(_rarity)) ?? [];
             }
 
-            notFound = (monsters is null);
+            if (!dataLoaded)
+            {
+                NavigationManager.NavigateTo("/404");
+            }
         }
     }
 }

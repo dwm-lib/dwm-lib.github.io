@@ -7,8 +7,7 @@ namespace DWMLibrary.WebApp.Pages.Skills
         [Parameter]
         public required string SkillName { get; set; }
 
-        private bool dataLoaded => (skill is not null);
-        private bool notFound = false;
+        private bool dataLoaded => (skill is not null && upgradeGroup is not null);
 
         private Skill? skill;
         private Combination[]? upgradeGroup;
@@ -20,7 +19,10 @@ namespace DWMLibrary.WebApp.Pages.Skills
             skill = await DataService.GetSkillByNameAsync(SkillName);
             upgradeGroup = (await DataService.GetSkillsByUpgradeGroupAsync(SkillName)) ?? [];
 
-            notFound = (skill is null);
+            if (!dataLoaded)
+            {
+                NavigationManager.NavigateTo("/404");
+            }
         }
 
         private bool combinesFrom => (skill is not null && upgradeGroup is not null && upgradeGroup?.FirstOrDefault(combo => combo.Skill.Id == skill.Id && combo.CombinesFrom is not null && combo.CombinesFrom.Length > 0) is not null);

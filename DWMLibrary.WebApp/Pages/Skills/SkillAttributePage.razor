@@ -1,5 +1,6 @@
 ﻿@page "/skill/attribute/{AttributeName}"
 @inject IDataService DataService
+@inject NavigationManager NavigationManager
 
 <PageTitle>DWM Library - Skill Attribute - @(AttributeName)</PageTitle>
 
@@ -23,9 +24,4 @@
             </div>
         </div>
     </div>
-}
-
-@if (notFound)
-{
-    <NotFoundComponent />
 }

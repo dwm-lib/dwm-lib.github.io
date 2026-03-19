@@ -8,7 +8,6 @@ namespace DWMLibrary.WebApp.Pages.Skills
         public required string CategoryName { get; set; }
 
         private bool dataLoaded => (skills is not null);
-        private bool notFound = false;
 
         private Skill[]? skills;
 
@@ -23,7 +22,10 @@ namespace DWMLibrary.WebApp.Pages.Skills
                 skills = await DataService.GetSkillsByCategoryAsync(_category);
             }
 
-            notFound = (skills is null);
+            if (!dataLoaded)
+            {
+                NavigationManager.NavigateTo("/404");
+            }
         }
     }
 }

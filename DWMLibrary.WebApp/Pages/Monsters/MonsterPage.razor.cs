@@ -8,7 +8,6 @@ namespace DWMLibrary.WebApp.Pages.Monsters
         public required string MonsterName { get; set; }
 
         private bool dataLoaded => (monster is not null && breeds is not null);
-        private bool notFound = false;
 
         private Monster? monster;
         private Breed[]? breeds;
@@ -20,7 +19,10 @@ namespace DWMLibrary.WebApp.Pages.Monsters
             monster = await DataService.GetMonsterByNameAsync(MonsterName);
             breeds = (await DataService.GetBreedsByMonsterAsync(MonsterName)) ?? [];
 
-            notFound = (monster is null);
+            if (!dataLoaded)
+            {
+                NavigationManager.NavigateTo("/404");
+            }
         }
     }
 }

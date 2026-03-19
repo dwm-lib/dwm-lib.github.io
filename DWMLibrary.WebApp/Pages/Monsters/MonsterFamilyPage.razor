@@ -1,5 +1,6 @@
 ﻿@page "/monster/family/{FamilyName}"
 @inject IDataService DataService
+@inject NavigationManager NavigationManager
 
 <PageTitle>DWM Library - Family - @(FamilyName)</PageTitle>
 
@@ -28,9 +29,4 @@
             </div>
         </div>
     </div>
-}
-
-@if (notFound)
-{
-    <NotFoundComponent />
 }

@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Components;
+
 namespace DWMLibrary.WebApp.Pages;
 
 public partial class JsonPage
 {
-    private bool dataLoaded => (data is not null && data.Skills is not null && data.Combinations is not null && data.Monsters is not null && data.Breeds is not null);
-    private bool notFound => (json is null);
+    private bool dataLoaded => (data is not null && data.Skills is not null && data.Combinations is not null && data.Monsters is not null && data.Breeds is not null && json is not null);
     private static System.Text.Json.JsonSerializerOptions JSON_SERIALIZER_OPTIONS => new() { WriteIndented = false, ReferenceHandler = ReferenceHandler.Preserve };
 
     private JsonData? data;
@@ -12,7 +13,6 @@ public partial class JsonPage
 
     protected override async Task OnInitializedAsync()
     {
-        data = null;
         var skills = await DataService.GetSkillsAsync();
         var combinations = await DataService.GetCombinationsAsync();
         var monsters = await DataService.GetMonstersAsync();
@@ -40,6 +40,11 @@ public partial class JsonPage
                     System.Diagnostics.Debugger.Break();
                 }
             }
+        }
+
+        if (!dataLoaded)
+        {
+            NavigationManager.NavigateTo("/404");
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿@page "/monster/location/{LocationName}"
 @inject IDataService DataService
+@inject NavigationManager NavigationManager
 
 <PageTitle>DWM Library - Location - @(LocationName)</PageTitle>
 
@@ -40,9 +41,4 @@
             </div>
         </div>
     </div>
-}
-
-@if (notFound)
-{
-    <NotFoundComponent />
 }
