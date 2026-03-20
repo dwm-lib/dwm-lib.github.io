@@ -16,7 +16,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
         {
             LocationName = Uri.UnescapeDataString(LocationName);
 
-            if (Enum.IsDefined(typeof(MonsterLocationType), LocationName) || Enum.IsDefined(typeof(MonsterLocationType), int.Parse(LocationName)))
+            if (Enum.IsDefined(typeof(MonsterLocationType), LocationName) || Enum.IsDefined(typeof(MonsterLocationType), int.TryParse(LocationName, out var value) ? value : string.Empty))
             {
                 var _location = Enum.Parse<MonsterLocationType>(LocationName);
                 LocationName = _location.ToJsonString();

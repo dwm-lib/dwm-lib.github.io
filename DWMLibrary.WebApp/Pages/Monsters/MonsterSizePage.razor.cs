@@ -16,7 +16,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
         {
             SizeName = Uri.UnescapeDataString(SizeName);
 
-            if (Enum.IsDefined(typeof(MonsterSize), SizeName) || Enum.IsDefined(typeof(MonsterSize), int.Parse(SizeName)))
+            if (Enum.IsDefined(typeof(MonsterSize), SizeName) || Enum.IsDefined(typeof(MonsterSize), int.TryParse(SizeName, out var value) ? value : string.Empty))
             {
                 var _size = Enum.Parse<MonsterSize>(SizeName);
                 SizeName = _size.ToJsonString();

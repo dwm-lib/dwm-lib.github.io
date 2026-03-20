@@ -1,29 +1,27 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager NavigationManager
 
-<main class="d-flex flex-column min-vh-100">
-    <header class="fixed-top">
-        <CascadingValue Value="@collapseNavMenu">
-            <NavigationBar OnClickCallback=@HandleChildClicks />
-            <BreadcrumbBar Links="@breadcrumbLinks" OnClickCallback=@HandleChildClicks />
-        </CascadingValue>
-    </header>
-    <article class="flex-grow-1 content">
-        @if (!collapseNavMenu)
-        {
-            <div class="overlay" @onclick="HandleFadeClick" />
-        }
-        <ErrorBoundary @ref="errorBoundary">
-            <ChildContent>
-                @Body
-            </ChildContent>
-            <ErrorContent>
-                <NotFoundPage />
-            </ErrorContent>
-        </ErrorBoundary>
-    </article>
-    <footer class="mt-auto">
-        <StatisticsBar />
-    </footer>
-</main>
-
+<header class="fixed-top">
+    <CascadingValue Value="@collapseNavMenu">
+        <NavigationBar OnClickCallback=@HandleChildClicks />
+        <BreadcrumbBar Links="@breadcrumbLinks" OnClickCallback=@HandleChildClicks />
+    </CascadingValue>
+</header>
+@if (!collapseNavMenu)
+{
+    <aside class="overlay" @onclick="HandleFadeClick" />
+}
+<article class="flex-grow-1">
+    <ErrorBoundary @ref="errorBoundary">
+        <ChildContent>
+            @Body
+        </ChildContent>
+        <ErrorContent>
+            @* <NotFoundPage /> *@
+            
+        </ErrorContent>
+    </ErrorBoundary>
+</article>
+<footer class="mt-auto">
+    <StatisticsBar />
+</footer>

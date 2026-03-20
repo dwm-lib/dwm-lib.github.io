@@ -16,18 +16,42 @@
     </head>
     <body>
         <script src="js/color-modes.js"></script>
-        <div id="app">
-            <svg class="loading-progress">
-                <circle r="40%" cx="50%" cy="50%" />
-                <circle r="40%" cx="50%" cy="50%" />
-            </svg>
-            <div class="loading-progress-text"></div>
-        </div>
-        <div id="blazor-error-ui">
-            An unhandled error has occurred.
-            <a href="." class="reload">Reload</a>
-            <span class="dismiss">🗙</span>
-        </div>
+        <main class="d-flex flex-column min-vh-100">
+            <section class="spinner">
+                <span class="spinner-border" aria-hidden="true"></span>
+                <span class="spinner-text" role="status"></span>
+            </section>
+        </main>
+        <aside id="blazor-error-ui" class="fixed-bottom w-100">
+            <section class="container">
+                <div class="alert alert-danger alert-dismissible m-3 p-3" role="alert">
+                    <div class="row">
+                        <div class="col me-auto">
+                            <h6 class="alert-heading my-0">
+                                <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                                Blazor Error
+                            </h6>
+                        </div>
+                        <div class="col-auto">
+                            <a class="btn btn-sm btn-outline-danger reload mx-1" href="." aria-label="Reload">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger" type="button" data-bs-dismiss="alert" aria-label="Close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <hr class="border-2 w-100 my-2" style="border-color: var(--bs-alert-border-color);" />
+                    <div class="row">
+                        <div class="col">
+                            <span>
+                                An unhandled exception has occurred. Please reload the page and try again.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
         <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="_framework/blazor.webassembly.js"></script>
         <script>navigator.serviceWorker.register('service-worker.js');</script>

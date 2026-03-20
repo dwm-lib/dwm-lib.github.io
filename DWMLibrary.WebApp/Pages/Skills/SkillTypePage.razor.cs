@@ -15,7 +15,7 @@ namespace DWMLibrary.WebApp.Pages.Skills
         {
             TypeName = Uri.UnescapeDataString(TypeName);
 
-            if (Enum.IsDefined(typeof(SkillType), TypeName) || Enum.IsDefined(typeof(SkillType), int.Parse(TypeName)))
+            if (Enum.IsDefined(typeof(SkillType), TypeName) || Enum.IsDefined(typeof(SkillType), int.TryParse(TypeName, out var value) ? value : string.Empty))
             {
                 var _type = Enum.Parse<SkillType>(TypeName);
                 TypeName = _type.ToJsonString();

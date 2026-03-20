@@ -15,7 +15,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
         protected override async Task OnParametersSetAsync()
         {
             RarityName = Uri.UnescapeDataString(RarityName);
-            if (Enum.IsDefined(typeof(MonsterRarity), RarityName) || Enum.IsDefined(typeof(MonsterRarity), int.Parse(RarityName)))
+            if (Enum.IsDefined(typeof(MonsterRarity), RarityName) || Enum.IsDefined(typeof(MonsterRarity), int.TryParse(RarityName, out var value) ? value : string.Empty))
             {
                 var _rarity = Enum.Parse<MonsterRarity>(RarityName);
                 RarityName = _rarity.ToJsonString();

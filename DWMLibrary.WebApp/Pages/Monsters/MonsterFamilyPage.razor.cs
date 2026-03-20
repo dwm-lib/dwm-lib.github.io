@@ -16,7 +16,7 @@ namespace DWMLibrary.WebApp.Pages.Monsters
         {
             FamilyName = Uri.UnescapeDataString(FamilyName);
 
-            if (Enum.IsDefined(typeof(MonsterFamily), FamilyName) || Enum.IsDefined(typeof(MonsterFamily), int.Parse(FamilyName)))
+            if (Enum.IsDefined(typeof(MonsterFamily), FamilyName) || Enum.IsDefined(typeof(MonsterFamily), int.TryParse(FamilyName, out var value) ? value : string.Empty))
             {
                 var _family = Enum.Parse<MonsterFamily>(FamilyName);
                 FamilyName = _family.ToJsonString();
