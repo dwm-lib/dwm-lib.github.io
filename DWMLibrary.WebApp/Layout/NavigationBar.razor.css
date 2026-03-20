@@ -7,6 +7,8 @@
         color: var(--bs-white);
         background-color: rgba(255,255,255,0.0);
         text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.125s ease-in-out;
     }
 
         .navbar ::deep a.active {
@@ -15,13 +17,13 @@
             text-decoration: none;
         }
 
-            .navbar ::deep a.active:hover {
+            .navbar ::deep a.active:hover, .navbar ::deep a.active:focus {
                 color: var(--bs-white);
                 background-color: rgba(255,255,255,0.0);
                 text-decoration: none;
             }
 
-        .navbar ::deep a:hover {
+        .navbar ::deep a:hover, .navbar ::deep a:focus {
             color: var(--bs-white);
             background-color: rgba(255,255,255,0.0);
             text-decoration: none;
@@ -36,6 +38,10 @@
 .navbar-brand {
     font-size: 1.25rem;
 }
+
+    .navbar-brand img {
+        object-fit: scale-down;
+    }
 
 .navbar-toggler {
     color: var(--bs-white);
@@ -59,8 +65,10 @@
 
     .nav-item ::deep a, .dropdown-menu ::deep a {
         color: var(--bs-white);
-        border-radius: 4px;
+        background-color: rgba(255,255,255,0.0);
         text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.125s ease-in-out;
     }
 
         .nav-item ::deep a.active, .dropdown-menu ::deep a.active {
@@ -69,15 +77,17 @@
             text-decoration: none;
         }
 
-            .nav-item ::deep a.active:hover, .dropdown-menu ::deep a.active:hover {
+            .nav-item ::deep a.active:hover, .dropdown-menu ::deep a.active:hover,
+            .nav-item ::deep a.active:focus, .dropdown-menu ::deep a.active:focus {
                 color: var(--bs-white);
                 background-color: rgba(255,255,255,0.25);
                 text-decoration: none;
             }
 
-        .nav-item ::deep a:hover, .dropdown-menu ::deep a:hover {
+        .nav-item ::deep a:hover, .dropdown-menu ::deep a:hover,
+        .nav-item ::deep a:focus, .dropdown-menu ::deep a:focus {
             color: var(--bs-white);
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255,255,255,0.125);
             text-decoration: none;
         }
 

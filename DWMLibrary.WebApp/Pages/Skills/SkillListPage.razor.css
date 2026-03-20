@@ -1,6 +1,6 @@
 ﻿.nav-item ::deep a {
     text-decoration: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.125s ease-in-out;
 }
 
     .nav-item ::deep a.active {
@@ -9,15 +9,15 @@
         text-decoration: none;
     }
 
-        .nav-item ::deep a.active:hover {
+        .nav-item ::deep a.active:hover, .nav-item ::deep a.active:focus {
             color: var(--bs-white);
             background-color: var(--bs-primary);
             text-decoration: none;
         }
 
-    .nav-item ::deep a:hover {
+    .nav-item ::deep a:hover, .nav-item ::deep a:focus {
         color: var(--bs-link-hover-color);
-        background-color: rgba(var(--bs-link-color-rgb),0.1);
+        background-color: rgba(var(--bs-link-color-rgb),0.125);
         text-decoration: underline;
     }
 

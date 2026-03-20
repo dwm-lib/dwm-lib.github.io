@@ -1,4 +1,4 @@
-﻿h1:focus {
+﻿:focus, :focus-visible, :focus-within {
     outline: none;
 }
 

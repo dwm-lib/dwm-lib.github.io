@@ -10,6 +10,7 @@ body {
 a {
     color: var(--bs-link-color);
     text-decoration: none;
+    transition: text-decoration 0.125s ease-in-out;
 }
 
     a.active {
@@ -17,12 +18,12 @@ a {
         text-decoration: none;
     }
 
-        a.active:hover {
+        a.active:hover, a.active:focus {
             color: var(--bs-link-hover-color);
             text-decoration: underline;
         }
 
-    a:hover {
+    a:hover, a:focus {
         color: var(--bs-link-hover-color);
         text-decoration: underline;
     }
@@ -92,23 +93,31 @@ h1, h2, h3, h4, h5, h6,
             }
 
             h1 a.active:hover, h2 a.active:hover, h3 a.active:hover, h4 a.active:hover, h5 a.active:hover, h6 a.active:hover,
-            .h1 a.active:hover, .h2 a.active:hover, .h3 a.active:hover, .h4 a.active:hover, .h5 a.active:hover, .h6 a.active:hover {
+            h1 a.active:focus, h2 a.active:focus, h3 a.active:focus, h4 a.active:focus, h5 a.active:focus, h6 a.active:focus,
+            .h1 a.active:hover, .h2 a.active:hover, .h3 a.active:hover, .h4 a.active:hover, .h5 a.active:hover, .h6 a.active:hover,
+            .h1 a.active:focus, .h2 a.active:focus, .h3 a.active:focus, .h4 a.active:focus, .h5 a.active:focus, .h6 a.active:focus {
                 color: inherit;
             }
 
                 h1 a.active:hover i, h2 a.active:hover i, h3 a.active:hover i, h4 a.active:hover i, h5 a.active:hover i, h6 a.active:hover i,
-                .h1 a.active:hover i, .h2 a.active:hover i, .h3 a.active:hover i, .h4 a.active:hover i, .h5 a.active:hover i, .h6 a.active:hover i {
+                h1 a.active:focus i, h2 a.active:focus i, h3 a.active:focus i, h4 a.active:focus i, h5 a.active:focus i, h6 a.active:focus i,
+                .h1 a.active:hover i, .h2 a.active:hover i, .h3 a.active:hover i, .h4 a.active:hover i, .h5 a.active:hover i, .h6 a.active:hover i,
+                .h1 a.active:focus i, .h2 a.active:focus i, .h3 a.active:focus i, .h4 a.active:focus i, .h5 a.active:focus i, .h6 a.active:focus i {
                     color: var(--bs-link-hover-color);
                     font-size: 1em;
                 }
 
         h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover,
-        .h1 a:hover, .h2 a:hover, .h3 a:hover, .h4 a:hover, .h5 a:hover, .h6 a:hover {
+        h1 a:focus, h2 a:focus, h3 a:focus, h4 a:focus, h5 a:focus, h6 a:focus,
+        .h1 a:hover, .h2 a:hover, .h3 a:hover, .h4 a:hover, .h5 a:hover, .h6 a:hover,
+        .h1 a:focus, .h2 a:focus, .h3 a:focus, .h4 a:focus, .h5 a:focus, .h6 a:focus {
             color: inherit;
         }
 
             h1 a:hover i, h2 a:hover i, h3 a:hover i, h4 a:hover i, h5 a:hover i, h6 a:hover i,
-            .h1 a:hover i, .h2 a:hover i, .h3 a:hover i, .h4 a:hover i, .h5 a:hover i, .h6 a:hover i {
+            h1 a:focus i, h2 a:focus i, h3 a:focus i, h4 a:focus i, h5 a:focus i, h6 a:focus i,
+            .h1 a:hover i, .h2 a:hover i, .h3 a:hover i, .h4 a:hover i, .h5 a:hover i, .h6 a:hover i,
+            .h1 a:focus i, .h2 a:focus i, .h3 a:focus i, .h4 a:focus i, .h5 a:focus i, .h6 a:focus i {
                 color: var(--bs-link-hover-color);
                 font-size: 1em;
             }
@@ -117,16 +126,11 @@ ul {
     list-style-type: square;
 }
 
-    ul.Possibilities, ul.BigList {
+    ul.Possibilities {
         list-style: none;
         padding-left: 0px;
         margin: 0px;
     }
-
-        ul.BigList > li {
-            display: inline-block;
-            text-align: center;
-        }
 
 table th {
     font-weight: lighter;

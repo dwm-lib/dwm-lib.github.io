@@ -1,15 +1,15 @@
 ﻿.card {
-    transition: border-color 0.3s ease;
+    transition: border-color 0.125s ease-in-out;
 }
 
     .card.active {
         border-color: var(--bs-link-color);
     }
 
-        .card.active:hover {
+        .card.active:hover, .card.active:focus-within {
             border-color: var(--bs-link-hover-color);
         }
 
-    .card:hover {
+    .card:hover, .card:focus-within {
         border-color: var(--bs-link-hover-color);
     }
