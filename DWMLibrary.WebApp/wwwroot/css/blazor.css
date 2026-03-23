@@ -2,10 +2,6 @@
     outline: none;
 }
 
-#blazor-error-ui {
-    display: none;
-}
-
 .spinner {
     display: flex;
     flex-direction: column;
@@ -14,7 +10,6 @@
     align-items: center;
     text-align: center;
     position: relative;
-    margin: auto auto auto auto;
     height: 33.3vh;
 }
 

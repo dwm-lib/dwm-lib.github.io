@@ -35,8 +35,8 @@
             text-decoration: none;
         }
 
-.navbar-brand {
-    font-size: 1.25rem;
+.navbar-brand b {
+    font-size: 1.5rem;
 }
 
     .navbar-brand img {
@@ -53,6 +53,16 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+.navbar-overlay {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.50;
+}
 
 .dropdown-menu {
     color: var(--bs-body-color);
@@ -61,6 +71,7 @@
 
 .nav-item, .dropdown-menu {
     font-size: 1.0rem;
+    background-color: var(--bs-primary);
 }
 
     .nav-item ::deep a, .dropdown-menu ::deep a {
@@ -94,4 +105,39 @@
         .nav-item ::deep a.show, .dropdown-menu ::deep a.show {
             color: var(--bs-white);
             text-decoration: none;
+        }
+
+.navbar-breadcrumb {
+    color: var(--bs-emphasis-color);
+    background-color: var(--bs-primary-bg-subtle);
+}
+
+.breadcrumb-item {
+    font-size: 1.0rem;
+}
+
+    .breadcrumb-item ::deep a {
+        color: var(--bs-link-color);
+        background-color: rgba(255,255,255,0.0);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.125s ease-in-out;
+    }
+
+        .breadcrumb-item ::deep a.active {
+            color: var(--bs-body-color);
+            background-color: rgba(var(--bs-link-hover-color-rgb),0.25);
+            text-decoration: none;
+        }
+
+            .breadcrumb-item ::deep a.active:hover, .breadcrumb-item ::deep a.active:focus {
+                color: var(--bs-body-color);
+                background-color: rgba(var(--bs-link-hover-color-rgb),0.25);
+                text-decoration: none;
+            }
+
+        .breadcrumb-item ::deep a:hover, .breadcrumb-item ::deep a:focus {
+            color: var(--bs-link-hover-color);
+            background-color: rgba(var(--bs-link-hover-color-rgb),0.125);
+            text-decoration: underline;
         }

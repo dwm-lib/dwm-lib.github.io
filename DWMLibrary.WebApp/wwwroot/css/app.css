@@ -33,8 +33,17 @@ a {
         text-decoration: none;
     }
 
+b {
+    font-weight: bold;
+}
+
 code {
     color: var(--bs-code-color);
+}
+
+em {
+    font-weight: bold;
+    font-style: italic;
 }
 
 h1, .h1, h4, .h4 {
@@ -126,8 +135,14 @@ hr {
     width: 66.6%;
 }
 
+
+i {
+    font-style: italic;
+}
+
 ul {
-    list-style-type: square;
+    list-style: none;
+    list-style-type: none;
 }
 
     ul.Possibilities {

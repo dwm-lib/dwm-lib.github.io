@@ -1,27 +1,20 @@
 ﻿@inherits LayoutComponentBase
+@inject IDataService DataService
 @inject NavigationManager NavigationManager
 
 <header class="fixed-top">
-    <CascadingValue Value="@collapseNavMenu">
-        <NavigationBar OnClickCallback=@HandleChildClicks />
-        <BreadcrumbBar Links="@breadcrumbLinks" OnClickCallback=@HandleChildClicks />
-    </CascadingValue>
+    <HeaderLayout BreadcrumbLinks=@(BreadcrumbLinks) />
 </header>
-@if (!collapseNavMenu)
-{
-    <aside class="overlay" @onclick="HandleFadeClick" />
-}
 <article class="flex-grow-1">
-    <ErrorBoundary @ref="errorBoundary">
+    <ErrorBoundary @ref="ErrorBoundary">
         <ChildContent>
-            @Body
+            @(Body)
         </ChildContent>
         <ErrorContent>
-            @* <NotFoundPage /> *@
-            
+            <ErrorAlertComponent />
         </ErrorContent>
     </ErrorBoundary>
 </article>
 <footer class="mt-auto">
-    <StatisticsBar />
+    <FooterLayout DataCounts=@(DataCounts) />
 </footer>

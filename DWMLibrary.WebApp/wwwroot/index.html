@@ -2,6 +2,10 @@
 <html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8" />
+        <meta name="application-name" content="DWM Library" />
+        <meta name="author" content="dwm-lib" />
+        <meta name="description" content="The comprehensive Dragon Warrior Monsters 2 database." />
+        <meta name="keywords" content="Dragon, Warrior, Monsters, DWM, DWM2, Breeds, Skills, GameBoy, GBC, Cobi, Tara, WonderEgg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DWM Library</title>
         <base href="/" />
@@ -17,41 +21,11 @@
     <body>
         <script src="js/color-modes.js"></script>
         <main class="d-flex flex-column min-vh-100">
-            <section class="spinner">
+            <section class="spinner m-auto">
                 <span class="spinner-border" aria-hidden="true"></span>
                 <span class="spinner-text" role="status"></span>
             </section>
         </main>
-        <aside id="blazor-error-ui" class="fixed-bottom w-100">
-            <section class="container">
-                <div class="alert alert-danger alert-dismissible m-3 p-3" role="alert">
-                    <div class="row">
-                        <div class="col me-auto">
-                            <h6 class="alert-heading my-0">
-                                <i class="bi bi-exclamation-triangle-fill me-1"></i>
-                                Blazor Error
-                            </h6>
-                        </div>
-                        <div class="col-auto">
-                            <a class="btn btn-sm btn-outline-danger reload mx-1" href="." aria-label="Reload">
-                                <i class="bi bi-arrow-clockwise"></i>
-                            </a>
-                            <button class="btn btn-sm btn-outline-danger" type="button" data-bs-dismiss="alert" aria-label="Close">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <hr class="border-2 w-100 my-2" style="border-color: var(--bs-alert-border-color);" />
-                    <div class="row">
-                        <div class="col">
-                            <span>
-                                An unhandled exception has occurred. Please reload the page and try again.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </aside>
         <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="_framework/blazor.webassembly.js"></script>
         <script>navigator.serviceWorker.register('service-worker.js');</script>

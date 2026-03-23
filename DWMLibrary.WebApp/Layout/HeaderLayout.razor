@@ -1,0 +1,53 @@
+﻿<nav class="navbar navbar-expand-md">
+    <div class="container">
+        <NavLink class="navbar-brand p-0" href="" Match="NavLinkMatch.All">
+            <span class="d-block d-md-none w-100 h-100" data-bs-toggle="collapse" data-bs-target=".navbar-toggleable.show">
+                <img class="img-fluid pt-1" src="/pics/2x/wonderegg-2x.png" draggable="false" alt="Logo" width="32" height="36" />
+            </span>
+            <span class="d-none d-md-inline-flex flex-row align-items-center align-content-center w-100 h-100">
+                <img class="img-fluid pt-1" src="/pics/2x/wonderegg-2x.png" draggable="false" alt="Logo" width="32" height="36" />
+                <b class="p-0 ms-3 text-center">DWM Library</b>
+            </span>
+        </NavLink>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-toggleable">
+            <span class="navbar-toggler-icon"></span>
+            <div class="navbar-toggleable navbar-overlay collapse" />
+        </button>
+        <div class="navbar-toggleable navbar-collapse collapse">
+            <ul class="navbar-nav me-auto">
+                @foreach (var link in NavigationLinks)
+                {
+                    <li class="nav-item mx-0 mx-lg-1 mt-2 mt-lg-0">
+                        <NavLink class="nav-link p-2" href=@(link.Item1)>
+                            <span class="d-block d-md-none w-100 h-100" data-bs-toggle="collapse" data-bs-target=".navbar-toggleable.show">
+                                @(link.Item2)
+                            </span>
+                            <span class="d-none d-md-block w-100 h-100">
+                                @(link.Item2)
+                            </span>
+                        </NavLink>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-breadcrumb py-1">
+    <div class="container">
+        <ol class="breadcrumb my-0">
+            @foreach (var link in BreadcrumbLinks)
+            {
+                <li class="breadcrumb-item">
+                    <NavLink class="d-inline-block px-2 py-1 pt-0" href=@(link.Value) Match="NavLinkMatch.All">
+                        <span class="d-block d-md-none w-100 h-100" data-bs-toggle="collapse" data-bs-target=".navbar-toggleable.show">
+                            @(link.Key)
+                        </span>
+                        <span class="d-none d-md-block w-100 h-100">
+                            @(link.Key)
+                        </span>
+                    </NavLink>
+                </li>
+            }
+        </ol>
+    </div>
+</nav>

@@ -4,16 +4,18 @@ namespace DWMLibrary.WebApp.Layout;
 
 public partial class MainLayout
 {
-    private bool collapseNavMenu = true;
-    private Tuple<string, string>[]? breadcrumbLinks;
+    private ErrorBoundary? ErrorBoundary { get; set; }
 
-    private ErrorBoundary? errorBoundary;
+    private readonly OrderedDictionary<string, string> BreadcrumbLinks = [];
+    private readonly Dictionary<string, int> DataCounts = [];
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        errorBoundary?.Recover();
+        ErrorBoundary?.Recover();
 
         GetBreadcrumbLinks();
+
+        await GetDataCounts();
 
         base.OnParametersSet();
     }
@@ -23,24 +25,35 @@ public partial class MainLayout
         var currentUrl = NavigationManager.Uri;
         var myUrl = currentUrl.Replace(NavigationManager.BaseUri, "");
         var path = myUrl.Split('/');
-        var lastLink = new Tuple<string, string>(string.Empty, "Home".ToLower());
+        var lastLink = string.Empty;
 
-        var count = 1;
-        breadcrumbLinks = [lastLink, .. path.Where(link => !string.IsNullOrWhiteSpace(link)).Select(link =>
+        BreadcrumbLinks.Clear();
+        BreadcrumbLinks.Add("home", lastLink);
+        foreach (var link in path.Where(p => !string.IsNullOrWhiteSpace(p)))
         {
-            count++;
-            lastLink = new Tuple<string, string>($"{lastLink.Item1}/{link}", Uri.UnescapeDataString(link));
-            return lastLink;
-        })];
+            lastLink = $"{lastLink}/{link}";
+            BreadcrumbLinks.Add(Uri.UnescapeDataString(link), lastLink);
+        }
     }
 
-    private void HandleFadeClick()
+    private async Task GetDataCounts()
     {
-        collapseNavMenu = true;
-    }
+        if (!DataCounts.ContainsKey(nameof(Monster)))
+        {
+            var count = (await DataService.GetMonstersAsync())?.Length ?? 0;
+            DataCounts.Add(nameof(Monster), count);
+        }
 
-    private void HandleChildClicks(bool value)
-    {
-        collapseNavMenu = value;
+        if (!DataCounts.ContainsKey(nameof(Skill)))
+        {
+            var count = (await DataService.GetSkillsAsync())?.Length ?? 0;
+            DataCounts.Add(nameof(Skill), count);
+        }
+
+        if (!DataCounts.ContainsKey(nameof(Breed)))
+        {
+            var count = (await DataService.GetBreedsAsync())?.Length ?? 0;
+            DataCounts.Add(nameof(Breed), count);
+        }
     }
 }
