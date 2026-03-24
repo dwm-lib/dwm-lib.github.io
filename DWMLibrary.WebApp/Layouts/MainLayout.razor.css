@@ -1,0 +1,29 @@
+.breadcrumb-item {
+    font-size: 1.0rem;
+}
+
+    .breadcrumb-item ::deep a {
+        color: var(--bs-link-color);
+        background-color: rgba(255,255,255,0.0);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.125s ease-in-out;
+    }
+
+        .breadcrumb-item ::deep a.active {
+            color: var(--bs-emphasis-color);
+            background-color: rgba(255,255,255,0.0);
+            text-decoration: none;
+        }
+
+            .breadcrumb-item ::deep a.active:hover, .breadcrumb-item ::deep a.active:focus {
+                color: var(--bs-emphasis-color);
+                background-color: rgba(var(--bs-link-hover-color-rgb),0.125);
+                text-decoration: underline;
+            }
+
+        .breadcrumb-item ::deep a:hover, .breadcrumb-item ::deep a:focus {
+            color: var(--bs-link-hover-color);
+            background-color: rgba(var(--bs-link-hover-color-rgb),0.125);
+            text-decoration: underline;
+        }

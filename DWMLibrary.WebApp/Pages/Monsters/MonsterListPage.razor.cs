@@ -1,12 +1,9 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 
 namespace DWMLibrary.WebApp.Pages.Monsters;
 
 public partial class MonsterListPage : IDisposable
 {
-    private bool dataLoaded => (monsters is not null && monsters.Length > 0);
-
     private Tabs currentTab = Tabs.ALL;
     private Monster[]? monsters;
 

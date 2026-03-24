@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-
 namespace DWMLibrary.WebApp.Components.Monsters;
 
 public partial class MonsterImageComponent
@@ -9,6 +7,9 @@ public partial class MonsterImageComponent
 
     [Parameter]
     public MonsterImageSize size { get; set; } = MonsterImageSize.Small;
+
+    [Parameter]
+    public bool IsPlaceholder { get; set; } = false;
 
     public enum MonsterImageSize
     {
@@ -26,12 +27,12 @@ public partial class MonsterImageComponent
 
     public string url => size switch
     {
-        MonsterImageSize.Large when (monster is null) => "/pics/4x/wonderegg-4x.png",
-        MonsterImageSize.Medium when (monster is null) => "/pics/2x/wonderegg-2x.png",
-        _ when (monster is null) => "/pics/1x/wonderegg.png",
-        MonsterImageSize.Large => $"/pics/4x/{monster!.Name.ToLower()}-4x.png",
-        MonsterImageSize.Medium => $"/pics/2x/{monster!.Name.ToLower()}-2x.png",
-        _ => $"/pics/1x/{monster!.Name.ToLower()}.png"
+        MonsterImageSize.Large when (monster is null) => "/img/4x/wonderegg-4x.png",
+        MonsterImageSize.Medium when (monster is null) => "/img/2x/wonderegg-2x.png",
+        _ when (monster is null) => "/img/1x/wonderegg.png",
+        MonsterImageSize.Large => $"/img/4x/{monster!.Name.ToLower()}-4x.png",
+        MonsterImageSize.Medium => $"/img/2x/{monster!.Name.ToLower()}-2x.png",
+        _ => $"/img/1x/{monster!.Name.ToLower()}.png"
     };
 
     public string alt => (monster?.Name.ToString() ?? "Logo") + " pic";

@@ -1,12 +1,9 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 
 namespace DWMLibrary.WebApp.Pages.Skills;
 
 public partial class SkillListPage : IDisposable
 {
-    private bool dataLoaded => (skills is not null && skills.Length > 0);
-
     private Tabs currentTab = Tabs.ALL;
     private Skill[]? skills;
 

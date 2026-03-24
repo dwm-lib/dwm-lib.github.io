@@ -4,10 +4,23 @@
         @foreach (var skill in skills!)
         {
             <div class=@(css)>
-                <div class="card bg-body-tertiary text-center p-2">
+                <div class="card link-card bg-body-tertiary align-items-center text-center p-2">
                     <a href=@($"/skill/{Uri.EscapeDataString(skill.Name)}") class="stretched-link">
                         @(skill.Name)
                     </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row g-3">
+        @for (var loop = 0; loop < 56; loop++)
+        {
+            <div class=@(css + " " + ((loop < 12) ? "opacity-100" : (loop < 24) ? "opacity-75" : (loop < 36) ? "opacity-50" : (loop < 48) ? "opacity-25" : "opacity-0"))>
+                <div class="card bg-body-tertiary align-items-center text-center p-2">
+                    <span class="placeholder placeholder-glow w-50">&nbsp;&nbsp;&nbsp;</span>
                 </div>
             </div>
         }

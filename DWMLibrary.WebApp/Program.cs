@@ -1,8 +1,10 @@
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("main");
 builder.RootComponents.Add<HeadOutlet>("head::after");
+builder.RootComponents.Add<HeaderView>("body > header");
+builder.RootComponents.Add<MainView>("body > main");
+builder.RootComponents.Add<FooterView>("body > footer");
 
-builder.Services.AddScoped<IDataService, DataService>(service =>
+builder.Services.AddSingleton<IDataService, DataService>(service =>
 {
     var httpClient = new HttpClient()
     {

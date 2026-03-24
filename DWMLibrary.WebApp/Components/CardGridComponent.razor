@@ -4,7 +4,7 @@
         @foreach (var value in categories)
         {
             <div class=@(css)>
-                <div class="card bg-body-tertiary text-center p-2">
+                <div class="card link-card bg-body-tertiary text-center p-2">
                     <a href=@($"{href}/{Uri.EscapeDataString(value.Item1)}") class="stretched-link">
                         @(value.Item2)
                     </a>

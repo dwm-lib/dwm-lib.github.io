@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+@inject IDataService DataService
+@inject NavigationManager NavigationManager
+
+<nav class="navbar my-3 py-1">
+    <div class="container">
+        <ol class="breadcrumb my-0">
+        @foreach (var link in BreadcrumbLinks)
+        {
+            <li class="breadcrumb-item">
+                <NavLink class="d-inline-block px-2 py-1 pt-0" href=@(link.Value) Match="NavLinkMatch.All">
+                    <span class="d-block w-100 h-100">
+                        @(link.Key)
+                    </span>
+                </NavLink>
+            </li>
+        }
+        </ol>
+    </div>
+</nav>
+<article class="my-3 pb-5">
+    <ErrorBoundary @ref="ErrorBoundary">
+        <ChildContent>
+            @(Body)
+        </ChildContent>
+        <ErrorContent>
+            <ErrorAlertComponent />
+        </ErrorContent>
+    </ErrorBoundary>
+</article>

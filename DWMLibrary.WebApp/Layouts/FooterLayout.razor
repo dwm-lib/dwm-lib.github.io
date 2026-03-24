@@ -1,12 +1,12 @@
-﻿<nav class="statistics-bar py-5">
+﻿@inherits LayoutComponentBase
+
+<nav class="statistics-bar py-5">
     <div class="container">
         <div class="row justify-content-center text-start">
             <div class="col-12 col-xl-4 pe-xl-5">
                 <h6>WonderEgg</h6>
                 <p>
-                    The comprehensive <em>Dragon Warrior Monsters 2</em> database.
-                    Providing detailed information on all <b>@(Monsters)</b> monsters and <b>@(Skills)</b> skills;
-                    along with listings for all <b>@(Breeds)</b> possible breeding combinations.
+                    The definitive <em>Dragon Warrior Monsters 2</em> reference.
                 </p>
                 <p class="link-list">
                     Source code available on <a href="https://github.com/dwm-lib/dwm-lib.github.io" target="_blank" rel="author">GitHub</a>
@@ -17,16 +17,16 @@
                     Such material is made available for educational purposes constituting 'fair use' as provided for in section 107 of the US Copyright Law.
                 </p>
             </div>
-            <div class="col-12 col-xl-8 ps-xl-5">
-                <div class="row row-cols-2 row-cols-md-4 justify-content-center text-start g-3">
+            <div class="col-12 col-xl-8 ps-xl-5 dis">
+                <div class="row row-cols-1 row-cols-md-3 justify-content-center text-start g-3">
                     <div class="col">
                         <h6 class="link-header">Links</h6>
-                        <ul class="link-list">
+                        <ul class="link-list row row-cols-3 row-cols-md-2">
                             @foreach (var link in NavigationLinks)
                             {
-                                <li class="mb-2">
-                                    <a href=@(link.Item1)>
-                                        @(link.Item2)
+                                <li class="col mb-2">
+                                    <a href=@(link.Value)>
+                                        @(link.Key)
                                     </a>
                                 </li>
                             }
@@ -34,10 +34,10 @@
                     </div>
                     <div class="col">
                         <h6 class="link-header">Families</h6>
-                        <ul class="link-list">
+                        <ul class="link-list row row-cols-3 row-cols-md-2">
                             @foreach (var value in typeof(MonsterFamily).GetJsonTuples())
                             {
-                                <li class="mb-2">
+                                <li class="col mb-2">
                                     <a href=@($"monster/family/{Uri.EscapeDataString(value.Item1)}")>
                                         @(value.Item2)
                                     </a>
@@ -47,25 +47,12 @@
                     </div>
                     <div class="col">
                         <h6 class="link-header">Locations</h6>
-                        <ul class="link-list">
+                        <ul class="link-list row row-cols-3 row-cols-md-2">
                             @foreach (var value in typeof(MonsterLocationType).GetJsonTuples())
                             {
-                                <li class="mb-2">
+                                <li class="col mb-2">
                                     <a href=@($"monster/location/{Uri.EscapeDataString(value.Item1)}")>
                                         @(value.Item1)
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <div class="col">
-                        <h6 class="link-header">Skills</h6>
-                        <ul class="link-list">
-                            @foreach (var value in typeof(SkillType).GetJsonTuples())
-                            {
-                                <li class="mb-2">
-                                    <a href=@($"skill/type/{Uri.EscapeDataString(value.Item1)}")>
-                                        @(value.Item2)
                                     </a>
                                 </li>
                             }
