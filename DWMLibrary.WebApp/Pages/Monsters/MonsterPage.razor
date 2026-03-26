@@ -6,41 +6,23 @@
 
 @if (dataLoaded)
 {
-    <div class="container">
-        <div class="row">
-            <h1 class="col-12">@monster!.Name</h1>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <section>
-                    <MonsterInfoComponent monster=@(monster) />
-                </section>
+    <section class="container">
+        <h1>@monster!.Name</h1>
+        <MonsterInfoComponent monster=@(monster) />
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col">
+                <h2>Stats</h2>
+                <h3>Growths</h3>
+                <MonsterGrowthsComponent monsters=@([monster]) />
+                <h3>Resistances</h3>
+                <MonsterResistancesComponent monster=@(monster) />
+            </div>
+            <div class="col">
+                <MonsterBreedsComponent breeds=@(breeds!.Where(b => string.Equals(b.Target.Name, monster!.Name, StringComparison.InvariantCultureIgnoreCase)).ToArray()) includeTargets=false />
+            </div>
+            <div class="col">
+                <MonsterBreedsComponent breeds=@(breeds!.Where(b => !string.Equals(b.Target.Name, monster!.Name, StringComparison.InvariantCultureIgnoreCase)).ToArray()) includeTargets=true />
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-xl-4">
-                <section>
-                    <h2>Stats</h2>
-                </section>
-                <section>
-                    <h3>Growths</h3>
-                    <MonsterGrowthsComponent monsters=@([monster]) />
-                </section>
-                <section>
-                    <h3>Resistances</h3>
-                    <MonsterResistancesComponent monster=@(monster) halfSize=true />
-                </section>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <section>
-                    <MonsterBreedsComponent breeds=@(breeds!.Where(b => string.Equals(b.Target.Name, monster!.Name, StringComparison.InvariantCultureIgnoreCase)).ToArray()) includeTargets=false />
-                </section>
-            </div>
-            <div class="col-md-6 col-xl-4">
-                <section>
-                    <MonsterBreedsComponent breeds=@(breeds!.Where(b => !string.Equals(b.Target.Name, monster!.Name, StringComparison.InvariantCultureIgnoreCase)).ToArray()) includeTargets=true />
-                </section>
-            </div>
-        </div>
-    </div>
+    </section>
 }

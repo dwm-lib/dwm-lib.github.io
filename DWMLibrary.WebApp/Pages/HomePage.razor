@@ -3,18 +3,14 @@
 
 <PageTitle>WonderEgg - Home</PageTitle>
 
-<div class="container">
-    <div class="row text-center">
-        <h1 class="col-12">WonderEgg</h1>
-        <div class="col-12">
-            <p>
-                Welcome to the breed database for Dragon Warrior: Monsters 2.
-                <br />
-                Click any link to start.
-            </p>
-        </div>
-    </div>
-    <hr class="mb-3" />
+<section class="container">
+    <h1>WonderEgg</h1>
+    <p class="text-center">
+        Welcome to the breed database for Dragon Warrior: Monsters 2.
+        <br />
+        Click any link to start.
+    </p>
+    <hr />
     <div class="row g-3">
         <HeaderLinkComponent href=@($"/monster") text=@($"Monsters") h1=true />
         <div class="col-12 col-lg-6">
@@ -42,7 +38,7 @@
             <CardGridComponent href=@($"/monster/rarity") categories=@(typeof(MonsterRarity).GetJsonTuples()) halfSize=true />
         </div>
     </div>
-    <hr class="mb-3" />
+    <hr />
     <div class="row g-3">
         <HeaderLinkComponent href=@($"/skill") text=@($"Skills") h1=true />
         <div class="col-12 col-lg-6">
@@ -64,4 +60,4 @@
             <CardGridComponent href=@($"/skill/attribute") categories=@(typeof(SkillAttribute).GetJsonTuples()) />
         </div>
     </div>
-</div>
+</section>

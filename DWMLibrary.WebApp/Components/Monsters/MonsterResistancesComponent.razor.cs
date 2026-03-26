@@ -1,19 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace DWMLibrary.WebApp.Components.Monsters;
+﻿namespace DWMLibrary.WebApp.Components.Monsters;
 
 public partial class MonsterResistancesComponent
 {
     [Parameter]
     public required Monster? monster { get; set; }
-
-    [Parameter]
-    public required bool includeNames { get; set; } = false;
-
-    [Parameter]
-    public bool halfSize { get; set; } = false;
-
-    private string css => halfSize ? "col-2 col-sm-2 col-md-3 col-lg-2 col-xl-2 col-xxl-2" : "col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 col-xxl-1";
 
     private bool dataLoaded => monster is not null;
 

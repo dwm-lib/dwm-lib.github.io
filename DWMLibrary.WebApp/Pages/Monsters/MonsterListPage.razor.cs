@@ -1,61 +1,96 @@
-using Microsoft.AspNetCore.Components.Routing;
-
 namespace DWMLibrary.WebApp.Pages.Monsters;
 
-public partial class MonsterListPage : IDisposable
+public partial class MonsterListPage
 {
-    private Tabs currentTab = Tabs.ALL;
+    [SupplyParameterFromQuery(Name = "sortBy")]
+    public string? SortBy { get; set; }
+
+    [SupplyParameterFromQuery(Name = "sortOrder")]
+    public string? SortOrder { get; set; }
+
+    private SortByOptions sortByOption = SortByOptions.DEFAULT;
+    private SortOrderOptions sortOrderOption = SortOrderOptions.DEFAULT;
     private Monster[]? monsters;
 
     protected override async Task OnInitializedAsync()
     {
-        // Subscribe to the event
-        NavigationManager.LocationChanged += LocationChanged;
-
         monsters = await DataService.GetMonstersAsync();
     }
 
     protected override void OnParametersSet()
     {
-        SwitchCurrentTab();
-    }
-
-    void LocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        string navigationMethod = e.IsNavigationIntercepted ? "HTML" : "code";
-        string location = e.Location;
-        SwitchCurrentTab(location);
-        StateHasChanged();
-    }
-
-    void SwitchCurrentTab(string? location = null)
-    {
-        location ??= string.Empty;
-
-        currentTab = currentTab switch
+        if (SortBy is not null)
         {
-            _ when (NavigationManager.Uri.EndsWith("/monster/size") || location.EndsWith("/monster/size")) => Tabs.SIZE,
-            _ when (NavigationManager.Uri.EndsWith("/monster/rarity") || location.EndsWith("/monster/rarity")) => Tabs.RARITY,
-            _ => Tabs.ALL
+            SortBy = Uri.UnescapeDataString(SortBy).ToUpperInvariant();
 
+            if (Enum.IsDefined(typeof(SortByOptions), SortBy) || Enum.IsDefined(typeof(SortByOptions), int.TryParse(SortBy, out var value) ? value : string.Empty))
+            {
+                sortByOption = Enum.Parse<SortByOptions>(SortBy);
+            }
+        }
+
+        if (SortOrder is not null)
+        {
+            SortOrder = Uri.UnescapeDataString(SortOrder).ToUpperInvariant();
+
+            if (Enum.IsDefined(typeof(SortOrderOptions), SortOrder) || Enum.IsDefined(typeof(SortOrderOptions), int.TryParse(SortOrder, out var value) ? value : string.Empty))
+            {
+                sortOrderOption = Enum.Parse<SortOrderOptions>(SortOrder);
+            }
+        }
+    }
+
+    private Monster[]? GetMonsters()
+    {
+        return sortByOption switch
+        {
+            SortByOptions.DEFAULT when (sortOrderOption == SortOrderOptions.DEFAULT) => monsters?.OrderBy(monster => monster.Id)?.ToArray(),
+            SortByOptions.DEFAULT when (sortOrderOption == SortOrderOptions.REVERSE) => monsters?.OrderByDescending(monster => monster.Id)?.ToArray(),
+            SortByOptions.NAME when (sortOrderOption == SortOrderOptions.DEFAULT) => monsters?.OrderBy(monster => monster.Name)?.ToArray(),
+            SortByOptions.NAME when (sortOrderOption == SortOrderOptions.REVERSE) => monsters?.OrderByDescending(monster => monster.Name)?.ToArray(),
+            SortByOptions.SIZE when (sortOrderOption == SortOrderOptions.DEFAULT) => monsters?.OrderBy(monster => monster.Size)?.ToArray(),
+            SortByOptions.SIZE when (sortOrderOption == SortOrderOptions.REVERSE) => monsters?.OrderByDescending(monster => monster.Size)?.ToArray(),
+            SortByOptions.RARITY when (sortOrderOption == SortOrderOptions.DEFAULT) => monsters?.OrderBy(monster => monster.Rarity)?.ToArray(),
+            SortByOptions.RARITY when (sortOrderOption == SortOrderOptions.REVERSE) => monsters?.OrderByDescending(monster => monster.Rarity)?.ToArray(),
+            _ => monsters
         };
     }
 
-    void IDisposable.Dispose()
+    private void SetOption(SortByOptions option)
     {
-        // Unsubscribe from the event when our component is disposed
-        NavigationManager.LocationChanged -= LocationChanged;
+        sortByOption = option;
     }
 
-    private string IsShowActive(Tabs tab)
+    private void SetOption(SortOrderOptions option)
     {
-        return (tab == currentTab) ? "show active" : string.Empty;
+        sortOrderOption = option;
     }
 
-    private enum Tabs
+    private string GetCSS(SortByOptions option)
     {
-        ALL,
+        return "dropdown-item pb-2" + ((sortByOption == option) ? " active" : null);
+    }
+
+    private bool IsSelected(SortByOptions option)
+    {
+        return (sortByOption == option);
+    }
+
+    private bool IsSelected(SortOrderOptions option)
+    {
+        return (sortOrderOption == option);
+    }
+
+    private enum SortByOptions
+    {
+        DEFAULT,
+        NAME,
         SIZE,
         RARITY
+    }
+    private enum SortOrderOptions
+    {
+        DEFAULT,
+        REVERSE
     }
 }

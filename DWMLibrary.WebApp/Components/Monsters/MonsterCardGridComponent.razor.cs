@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-
 namespace DWMLibrary.WebApp.Components.Monsters;
 
 public partial class MonsterCardGridComponent
@@ -7,10 +5,28 @@ public partial class MonsterCardGridComponent
     [Parameter]
     public required Monster[]? monsters { get; set; }
 
-    [Parameter]
-    public bool halfSize { get; set; } = false;
-
     private bool dataLoaded => (monsters is not null && monsters.Length > 0);
 
-    private string css => halfSize ? "col-6 col-sm-6 col-md-4 col-lg-6 col-xl-4 col-xxl-4" : "col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2";
+    private string GetCSS(int row, int col)
+    {
+        var opacity = row switch
+        {
+            0 => " opacity-100",
+            1 => " opacity-75",
+            2 => " opacity-50",
+            3 => " opacity-25",
+            _ => " opacity-0"
+        };
+        var display = col switch
+        {
+            0 => " d-block",
+            1 => " d-block",
+            2 => " d-none d-md-block",
+            3 => " d-none d-lg-block",
+            4 => " d-none d-xl-block",
+            5 => " d-none d-xxl-block",
+            _ => " d-none"
+        };
+        return "col" + opacity + display;
+    }
 }

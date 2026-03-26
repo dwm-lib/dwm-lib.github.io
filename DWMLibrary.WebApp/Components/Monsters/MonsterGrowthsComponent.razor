@@ -3,7 +3,7 @@
     <div class="row">
         @if (includeNames)
         {
-            <div class="col-auto mx-auto px-0">
+            <div class="col">
                 <span class="Growths">Name</span>
                 @foreach (var monster in monsters!)
                 {
@@ -16,7 +16,7 @@
         }
         @foreach (var field in typeof(MonsterGrowths).GetProperties())
         {
-            <div class="col-1 mx-auto px-0">
+            <div class="col">
                 <span class="Growths">@(field.Name)</span>
                 @foreach (var monster in monsters!)
                 {

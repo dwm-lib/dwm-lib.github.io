@@ -1,14 +1,14 @@
 ﻿@if (dataLoaded)
 {
-    <div class="row g-1">
+    <div class="row row-cols-auto">
         @foreach (var attribute in Enum.GetValues<SkillAttribute>().Where(attr => attr != SkillAttribute.NONE))
         {
-            <div class=@(css)>
-                <div class="card border-0 p-1">
+            <div class="col">
+                <div class="card border-0 p-0">
                     <a href=@($"/skill/attribute/{Uri.EscapeDataString(attribute.ToString())}") class="stretched-link" style="font-weight: lighter; font-style: italic; color: var(--bs-secondary-color);">
                         @(attribute.ToJsonString())
                     </a>
-                    <span style="font-size: 0.75em;">
+                    <span class="text-nowrap" style="font-size: 0.75em;">
                         @(ConvertAttribute(attribute))
                     </span>
                 </div>

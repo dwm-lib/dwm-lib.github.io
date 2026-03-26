@@ -3,21 +3,15 @@
 
 <PageTitle>WonderEgg - Families</PageTitle>
 
-<div class="container">
-    <div class="row">
-        <h1 class="col-12">Families</h1>
-    </div>
+<section class="container">
+    <h1>Families</h1>
     <CardGridComponent href=@($"/family") categories=@(typeof(MonsterFamily).GetJsonTuples()) />
-    <hr class="mb-3" />
+    <hr />
     @foreach (var family in Enum.GetValues<MonsterFamily>())
     {
         <div class="row">
             <HeaderLinkComponent href=@($"/family/{Uri.EscapeDataString(family.ToString())}") text=@($"The {family.ToJsonString()} Family") />
         </div>
-        <div class="row mb-3">
-            <section>
-                <MonsterCardGridComponent monsters=@(monsters?.Where(monster => monster.Family == family)?.OrderBy(monster => monster.Id)?.ToArray()) />
-            </section>
-        </div>
+        <MonsterCardGridComponent monsters=@(monsters?.Where(monster => monster.Family == family)?.OrderBy(monster => monster.Id)?.ToArray()) />
     }
-</div>
+</section>

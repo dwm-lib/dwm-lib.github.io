@@ -3,7 +3,7 @@
     <div class="row">
         @if (includeNames)
         {
-            <div class="col-auto mx-auto px-0">
+            <div class="col">
                 <span class="Requirements">Name</span>
                 @foreach (var skill in skills!)
                 {
@@ -16,7 +16,7 @@
         }
         @foreach (var field in typeof(SkillRequirements).GetProperties())
         {
-            <div class="col-1 mx-auto px-0">
+            <div class="col">
                 <span class="Requirements">@(field.Name)</span>
                 @foreach (var skill in skills!)
                 {

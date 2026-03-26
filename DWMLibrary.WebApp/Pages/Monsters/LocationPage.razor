@@ -4,47 +4,33 @@
 
 <PageTitle>WonderEgg - Location - @(LocationName)</PageTitle>
 
-<div class="container">
-    <div class="row">
-        <h1 class="col-12">@(LocationName)</h1>
-    </div>
-    <div class="row mb-3">
-        <section>
-            <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Both)) />
-        </section>
-    </div>
+<section class="container">
+    <h1>@(LocationName)</h1>
+    <hr />
+    <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Both)) />
     @if (GetMonstersForVersion(MonsterLocationVersion.Cobi) is not null)
     {
-        <div class="row mb-3">
-            <section>
-                <h2 class="col-12">@(MonsterLocationVersion.Cobi.ToJsonString()) Exclusive</h2>
-                <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Cobi)) />
-            </section>
-        </div>
+        <h2>@(MonsterLocationVersion.Cobi.ToJsonString()) Exclusive</h2>
+        <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Cobi)) />
     }
     @if (GetMonstersForVersion(MonsterLocationVersion.Tara) is not null)
     {
-        <div class="row mb-3">
-            <section>
-                <h2 class="col-12">@(MonsterLocationVersion.Tara.ToJsonString()) Exclusive</h2>
-                <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Tara)) />
-            </section>
-        </div>
+        <h2>@(MonsterLocationVersion.Tara.ToJsonString()) Exclusive</h2>
+        <MonsterCardGridComponent monsters=@(GetMonstersForVersion(MonsterLocationVersion.Tara)) />
     }
-    @if (monsters is not null && breeds is not null)
-    {
-        <div class="row mb-3">
-            <div class="col-lg-6">
-                <section>
-                    <h2>Growths</h2>
-                    <MonsterGrowthsComponent monsters=@(monsters) includeNames=true />
-                </section>
+    <div class="row">
+        @if (monsters is not null && monsters.Length > 0)
+        {
+            <div class="col">
+                <h2>Growths</h2>
+                <MonsterGrowthsComponent monsters=@(monsters) includeNames=true />
             </div>
-            <div class="col-lg-6">
-                <section>
-                    <MonsterBreedsComponent breeds=@(breeds) includeTargets=true />
-                </section>
+        }
+        @if (breeds is not null && breeds.Length > 0)
+        {
+            <div class="col">
+                <MonsterBreedsComponent breeds=@(breeds) includeTargets=true />
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+</section>

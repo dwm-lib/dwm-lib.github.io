@@ -2,7 +2,7 @@
 @inject IDataService DataService
 @inject NavigationManager NavigationManager
 
-<nav class="navbar my-3 py-1">
+<nav class="navbar py-3">
     <div class="container">
         <ol class="breadcrumb my-0">
         @foreach (var link in BreadcrumbLinks)
@@ -18,7 +18,7 @@
         </ol>
     </div>
 </nav>
-<article class="my-3 pb-5">
+<article class="pb-5">
     <ErrorBoundary @ref="ErrorBoundary">
         <ChildContent>
             @(Body)
