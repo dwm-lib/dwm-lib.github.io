@@ -26,17 +26,14 @@ public partial class JsonPage
                 Breeds = breeds
             };
 
-            if (dataLoaded)
+            try
             {
-                try
-                {
-                    json = System.Text.Json.JsonSerializer.Serialize(data, JSON_SERIALIZER_OPTIONS);
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debugger.Log(0, System.Diagnostics.Debugger.DefaultCategory, ex.Message);
-                    System.Diagnostics.Debugger.Break();
-                }
+                json = System.Text.Json.JsonSerializer.Serialize(data, JSON_SERIALIZER_OPTIONS);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debugger.Log(0, System.Diagnostics.Debugger.DefaultCategory, ex.Message);
+                System.Diagnostics.Debugger.Break();
             }
         }
 

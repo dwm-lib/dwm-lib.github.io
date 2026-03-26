@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Components;
-
 namespace DWMLibrary.WebApp.Pages.Monsters
 {
-    public partial class MonsterFamilyPage
+    public partial class FamilyPage
     {
         [Parameter]
         public required string FamilyName { get; set; }

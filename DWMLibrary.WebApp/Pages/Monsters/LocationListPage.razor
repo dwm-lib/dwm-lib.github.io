@@ -1,0 +1,23 @@
+﻿@page "/location"
+@inject IDataService DataService
+
+<PageTitle>WonderEgg - Locations</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <h1 class="col-12">Families</h1>
+    </div>
+    <CardGridComponent href=@($"/location") categories=@(typeof(MonsterLocationType).GetJsonTuples()) />
+    <hr class="mb-3" />
+    @foreach (var location in Enum.GetValues<MonsterLocationType>())
+    {
+        <div class="row">
+            <HeaderLinkComponent href=@($"/location/{Uri.EscapeDataString(location.ToString())}") text=@(location.ToJsonString()) />
+        </div>
+        <div class="row mb-3">
+            <section>
+                <MonsterCardGridComponent monsters=@(monsters?.Where(monster => monster.Locations is not null && monster.Locations.Any(loc => loc.Name == location))?.OrderBy(monster => monster.Id)?.ToArray()) />
+            </section>
+        </div>
+    }
+</div>

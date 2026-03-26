@@ -43,7 +43,7 @@
                             @foreach (var value in typeof(MonsterFamily).GetJsonTuples())
                             {
                                 <li class="col mb-2">
-                                    <a href=@($"monster/family/{Uri.EscapeDataString(value.Item1)}")>
+                                    <a href=@($"family/{Uri.EscapeDataString(value.Item1)}")>
                                         @(value.Item2)
                                     </a>
                                 </li>
@@ -56,7 +56,7 @@
                             @foreach (var value in typeof(MonsterLocationType).GetJsonTuples())
                             {
                                 <li class="col mb-2">
-                                    <a href=@($"monster/location/{Uri.EscapeDataString(value.Item1)}")>
+                                    <a href=@($"location/{Uri.EscapeDataString(value.Item1)}")>
                                         @(value.Item1)
                                     </a>
                                 </li>

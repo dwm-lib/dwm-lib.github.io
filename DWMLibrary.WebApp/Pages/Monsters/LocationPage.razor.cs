@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Components;
-
 namespace DWMLibrary.WebApp.Pages.Monsters
 {
-    public partial class MonsterLocationPage
+    public partial class LocationPage
     {
         [Parameter]
         public required string LocationName { get; set; }

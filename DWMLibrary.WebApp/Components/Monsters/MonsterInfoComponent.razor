@@ -12,7 +12,7 @@
                 <div class="row align-items-center mb-3">
                     <h3 class="col-4 mb-0">Family</h3>
                     <span class="col-8">
-                        <a href=@($"/monster/family/{Uri.EscapeDataString(monster!.Family.ToString())}")>
+                        <a href=@($"/family/{Uri.EscapeDataString(monster!.Family.ToString())}")>
                             @(monster!.Family.ToJsonString())
                         </a>
                     </span>
@@ -77,7 +77,7 @@
                         @foreach (var loc in monster.Locations)
                         {
                             <li>
-                                <a href=@($"/monster/location/{Uri.EscapeDataString(loc.Name.ToString())}")>
+                                <a href=@($"/location/{Uri.EscapeDataString(loc.Name.ToString())}")>
                                     @(loc.Name.ToJsonString())
                                     @if (loc.Version != MonsterLocationVersion.Both)
                                     {

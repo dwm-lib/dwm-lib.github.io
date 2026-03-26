@@ -34,8 +34,6 @@ public partial class MonsterListPage : IDisposable
 
         currentTab = currentTab switch
         {
-            _ when (NavigationManager.Uri.EndsWith("/monster/family") || location.EndsWith("/monster/family")) => Tabs.FAMILY,
-            _ when (NavigationManager.Uri.EndsWith("/monster/location") || location.EndsWith("/monster/location")) => Tabs.LOCATION,
             _ when (NavigationManager.Uri.EndsWith("/monster/size") || location.EndsWith("/monster/size")) => Tabs.SIZE,
             _ when (NavigationManager.Uri.EndsWith("/monster/rarity") || location.EndsWith("/monster/rarity")) => Tabs.RARITY,
             _ => Tabs.ALL
@@ -57,8 +55,6 @@ public partial class MonsterListPage : IDisposable
     private enum Tabs
     {
         ALL,
-        FAMILY,
-        LOCATION,
         SIZE,
         RARITY
     }

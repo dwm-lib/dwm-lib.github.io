@@ -19,15 +19,15 @@
         <HeaderLinkComponent href=@($"/monster") text=@($"Monsters") h1=true />
         <div class="col-12 col-lg-6">
             <div class="row">
-                <HeaderLinkComponent href=@($"/monster/family") text=@($"Families") />
+                <HeaderLinkComponent href=@($"/family") text=@($"Families") />
             </div>
-            <CardGridComponent href=@($"/monster/family") categories=@(typeof(MonsterFamily).GetJsonTuples()) halfSize=true />
+            <CardGridComponent href=@($"/family") categories=@(typeof(MonsterFamily).GetJsonTuples()) halfSize=true />
         </div>
         <div class="col-12 col-lg-6">
             <div class="row">
-                <HeaderLinkComponent href=@($"/monster/location") text=@($"Locations") />
+                <HeaderLinkComponent href=@($"/location") text=@($"Locations") />
             </div>
-            <CardGridComponent href=@($"/monster/location") categories=@(typeof(MonsterLocationType).GetJsonTuples()) halfSize=true />
+            <CardGridComponent href=@($"/location") categories=@(typeof(MonsterLocationType).GetJsonTuples()) halfSize=true />
         </div>
         <div class="col-12 col-lg-6">
             <div class="row">
